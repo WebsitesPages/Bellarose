@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EDE4D3">
+<title>BELLAROSE HAIRSALON — Balayage & Colour, München</title>
+<meta name="description" content="Kleiner Colour-Salon im Herzen von München. Balayage, Strähnen, Glossing und Olaplex. Preise transparent nach Haarlänge.">
+
+<meta property="og:title" content="BELLAROSE HAIRSALON — Balayage & Colour, München">
+<meta property="og:description" content="Kleiner Colour-Salon im Herzen von München. Preise transparent nach Haarlänge.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<!-- ERSETZEN: absolute URL eintragen, sobald die Domain steht.
+     Relative Pfade werden von Facebook/WhatsApp nicht aufgelöst. -->
+<meta property="og:image" content="bilder/salon-spiegelplaetze.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Strukturierte Daten. Werte aus dem Google- und Treatwell-Eintrag,
+     Stand 01.08.2026. Bei Änderung von Adresse, Telefon oder Zeiten
+     hier UND in der Tabelle unten nachziehen. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "BELLAROSE HAIRSALON",
+  "image": "bilder/salon-spiegelplaetze.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kaulbachstraße 36",
+    "postalCode": "80539",
+    "addressLocality": "München",
+    "addressCountry": "DE"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 48.15036, "longitude": 11.5842173 },
+  "telephone": "+49 89 37025244",
+  "url": "https://www.bellarosehairsalon.de/",
+  "priceRange": "€€",
+  "currenciesAccepted": "EUR",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "581"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00" }
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://buchung.treatwell.de/ort/100042225/menue/"
+    }
+  }
+}
+</script>
+
+<!-- Schriften liegen lokal in /fonts/ — siehe @font-face unten.
+     Kein Drittanbieter-Aufruf beim Seitenaufruf. -->
+<link rel="preload" href="fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+  /* ------------------------------------------------------------
+     Schriften lokal. Kein Aufruf an fonts.googleapis.com und
+     fonts.gstatic.com mehr — damit keine Uebertragung von
+     Besucher-IPs an Google (LG Muenchen I, 3 O 17493/20).
+     Beides sind Variable Fonts: 400 und 500 kommen aus derselben
+     Datei, deshalb font-weight als Bereich.
+     ------------------------------------------------------------ */
+  @font-face{
+    font-family:'Bodoni Moda'; font-style:normal; font-weight:400 500;
+    font-display:swap; src:url('fonts/bodoni-moda-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face{
+    font-family:'Bodoni Moda'; font-style:normal; font-weight:400 500;
+    font-display:swap; src:url('fonts/bodoni-moda-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face{
+    font-family:'Bodoni Moda'; font-style:italic; font-weight:400 500;
+    font-display:swap; src:url('fonts/bodoni-moda-italic-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face{
+    font-family:'Bodoni Moda'; font-style:italic; font-weight:400 500;
+    font-display:swap; src:url('fonts/bodoni-moda-italic-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face{
+    font-family:'Jost'; font-style:normal; font-weight:300 500;
+    font-display:swap; src:url('fonts/jost-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face{
+    font-family:'Jost'; font-style:normal; font-weight:300 500;
+    font-display:swap; src:url('fonts/jost-latin-ext.woff2') format('woff2');
+    unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+/* ============================================================
+   TOKENS
+   Warmes Feld, kühler Akzent — die Logik einer Blondierung.
+   ============================================================ */
+:root{
+  --paper:      #EDE4D3;   /* Champagner — Grundfläche */
+  --paper-2:    #E5DAC5;   /* angehobene Fläche */
+  --line:       #D6C9B2;   /* Haarlinien */
+  --ink:        #2E2620;   /* warmes Dunkelbraun — Fliesstext */
+  --ink-strong: #1B1411;   /* Headlines, höchster Kontrast */
+  --muted:      #6F6559;   /* gedämpft — Meta, Labels */
+  --accent:     #6F4230;   /* Mahagoni — das einzige Farbsignal */
+
+  /* Haartöne. Nur im Farbring und in den Bildfeldern. */
+  --t-honig:    #D2AE68;
+  --t-karamell: #AE7B45;
+  --t-kupfer:   #8A4E30;
+  --t-hasel:    #5B3828;
+  --t-espresso: #281B15;
+  --t-asch:     #8C8478;
+
+  --fs-display: clamp(3.2rem, 12vw, 9.5rem);
+  --fs-h2:      clamp(2rem, 5.5vw, 4rem);
+  --fs-h3:      clamp(1.35rem, 2.6vw, 1.9rem);
+  --fs-body:    clamp(1rem, 1.05vw, 1.075rem);
+  --fs-meta:    0.7rem;
+
+  /* ---- Horizontales System ----------------------------------
+     Drei getrennte Groessen statt einer. Vorher machte --gut
+     alles gleichzeitig, deshalb klebte die Schrift am Rand.
+
+     --shelf   Breite, in der Inhalt ueberhaupt stehen darf
+     --gut     Abstand von dieser Kante nach innen
+     --edge    dasselbe Mass fuer Elemente, die ueber die volle
+               Fensterbreite laufen (Nav, Reel-Bildunterschrift)
+     --measure Lesebreite fuer Fliesstext
+     ------------------------------------------------------------ */
+  --shelf:   1500px;
+  --gut:     clamp(1.9rem, 6.4vw, 7.5rem);
+  --edge:    max(var(--gut), calc((100% - var(--shelf)) / 2 + var(--gut)));
+  --measure: 58ch;
+
+  --rule: 1px solid var(--line);
+
+  --e-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --e-swing: cubic-bezier(0.62, 0.02, 0.24, 1);
+  --e-soft:  cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:var(--fs-body);
+  font-weight:300;
+  line-height:1.62;
+  letter-spacing:0.005em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.is-locked{ overflow:hidden; }
+
+/* Filmkorn — nimmt der Fläche das Digitale */
+body::after{
+  content:''; position:fixed; inset:-50%; z-index:900; pointer-events:none;
+  opacity:0.05; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(5) infinite;
+}
+@keyframes grain{
+  0%,100%{ transform:translate(0,0) }
+  20%{ transform:translate(-3%,2%) }
+  40%{ transform:translate(2%,-3%) }
+  60%{ transform:translate(-2%,-2%) }
+  80%{ transform:translate(3%,3%) }
+}
+
+h1,h2,h3{
+  font-family:'Bodoni Moda',Didot,'Bodoni MT',Georgia,serif;
+  font-weight:400; color:var(--ink-strong);
+  line-height:0.94; letter-spacing:-0.015em; margin:0;
+}
+p{ margin:0 0 1.1em; }
+a{ color:inherit; text-decoration:none; }
+
+::selection{ background:var(--accent); color:var(--paper); }
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
+  border-radius:1px;
+}
+
+.wrap{ width:100%; max-width:var(--shelf); margin:0 auto; padding:0 var(--gut); }
+
+/* Label — gesperrte Versalien, das Utility-Register */
+.label{
+  font-size:var(--fs-meta); text-transform:uppercase;
+  letter-spacing:0.34em; font-weight:400; color:var(--muted);
+  display:inline-block;
+}
+
+/* ============================================================
+   LADESEQUENZ — Colour & Cut
+   Der Name wird gefärbt, dann fährt die Klinge durch und der
+   Bildschirm fällt in Strähnen zu Boden.
+   ============================================================ */
+#gate{
+  position:fixed; inset:0; z-index:1000; pointer-events:none;
+  background:var(--paper); overflow:hidden;
+}
+#gate.is-done{ display:none; }
+/* Sobald die Strähnen fallen, darf kein Grund mehr dahinterstehen */
+#gate.is-falling{ background:transparent; }
+
+/* --- Die Strähnen --- */
+.cut{ position:absolute; inset:0; display:flex; }
+.cut__strip{
+  flex:1 1 auto; background:var(--paper);
+  will-change:transform;
+  /* Beschleunigend — Haar fällt, es gleitet nicht */
+  transition:transform var(--dur,1000ms) cubic-bezier(0.45,0.02,0.86,0.42) var(--del,0ms);
+}
+#gate.is-falling .cut__strip{
+  transform:translate(var(--dx,0), 116vh) rotate(var(--rot,0deg));
+}
+
+/* --- Die Klinge --- */
+.blade{
+  position:absolute; left:0; right:0; top:56%; height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%, var(--line) 8%, var(--muted) 38%,
+    var(--ink-strong) 62%, var(--muted) 84%, transparent 100%);
+  transform:scaleX(0); transform-origin:left center;
+  opacity:0;
+}
+.blade__glint{
+  position:absolute; top:56%; left:0;
+  width:clamp(60px,9vw,110px); height:clamp(60px,9vw,110px);
+  margin-top:calc(clamp(60px,9vw,110px) / -2);
+  border-radius:50%; opacity:0; pointer-events:none;
+  background:radial-gradient(circle,
+    rgba(255,252,246,.95) 0%, rgba(210,174,104,.42) 34%, transparent 68%);
+  filter:blur(3px);
+}
+#gate.is-cutting .blade{
+  opacity:1;
+  animation:blade var(--sweep,540ms) cubic-bezier(0.5,0.05,0.3,1) forwards;
+}
+#gate.is-cutting .blade__glint{
+  animation:glint var(--sweep,540ms) cubic-bezier(0.5,0.05,0.3,1) forwards;
+}
+@keyframes blade{
+  0%   { transform:scaleX(0) }
+  72%  { transform:scaleX(1); opacity:1 }
+  100% { transform:scaleX(1); opacity:0 }
+}
+@keyframes glint{
+  0%   { transform:translateX(-60%); opacity:0 }
+  10%  { opacity:1 }
+  78%  { opacity:1 }
+  100% { transform:translateX(100vw); opacity:0 }
+}
+
+/* --- Wortmarke --- */
+.gate__mark{
+  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  text-align:center; width:min(94vw,860px);
+}
+/* Fällt mit, einen Tick später und mit leichter Drehung */
+#gate.is-falling .gate__mark{
+  transform:translate(-50%,118vh) rotate(-1.6deg);
+  transition:transform 1150ms cubic-bezier(0.45,0.02,0.86,0.42) 90ms;
+}
+
+.gate__word{
+  position:relative; display:inline-block;
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-style:italic; font-weight:500;
+  font-size:clamp(2.6rem,11vw,7rem);
+  line-height:1.08; letter-spacing:-0.01em; white-space:nowrap;
+}
+.gate__word .base{
+  color:var(--line); display:block;
+  opacity:0; transform:translateY(14px);
+  transition:opacity 700ms var(--e-soft), transform 1000ms var(--e-expo);
+}
+.gate__word .paint{
+  position:absolute; inset:0; display:block;
+  background:linear-gradient(96deg,
+    var(--t-honig) 0%, #C99A5B 26%, var(--t-karamell) 48%,
+    var(--t-kupfer) 74%, var(--t-hasel) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 1400ms cubic-bezier(0.42,0.02,0.32,1);
+}
+
+/* --- Der Pinsel --- */
+.gate__brush{
+  position:absolute; top:50%; left:0;
+  width:clamp(70px,9vw,120px); height:clamp(90px,17vw,150px);
+  border-radius:50%;
+  background:radial-gradient(60% 50% at 50% 50%,
+    rgba(201,154,91,.6) 0%, rgba(174,123,69,.28) 45%, transparent 72%);
+  filter:blur(14px);
+  opacity:0; transform:translate(-60%,-50%) rotate(-9deg);
+  pointer-events:none;
+}
+#gate.is-painting .gate__brush{
+  animation:brush 1400ms cubic-bezier(0.42,0.02,0.32,1) forwards;
+}
+@keyframes brush{
+  0%   { opacity:0; transform:translate(-60%,-50%) rotate(-9deg) scaleY(.9) }
+  9%   { opacity:1 }
+  90%  { opacity:1 }
+  100% { opacity:0; transform:translate(calc(100% * var(--travel,7)),-50%) rotate(-9deg) scaleY(1.05) }
+}
+
+/* --- Linie und Unterzeile --- */
+.gate__rule{
+  height:1px; background:var(--line); margin:1.5rem auto 0;
+  width:0; transition:width 900ms var(--e-expo);
+}
+.gate__sub{
+  margin-top:1.15rem; opacity:0; color:var(--muted);
+  transition:opacity 700ms var(--e-soft);
+}
+
+/* --- Zustände --- */
+#gate.is-in .gate__word .base{ opacity:1; transform:translateY(0); }
+#gate.is-painting .gate__word .paint{ clip-path:inset(0 -2% 0 0); }
+#gate.is-set .gate__rule{ width:min(64vw,380px); }
+#gate.is-set .gate__sub{ opacity:1; }
+
+.gate__skip{
+  position:absolute; right:var(--gut); bottom:2rem;
+  background:none; border:0; cursor:pointer; color:var(--muted);
+  font-family:'Jost',sans-serif; pointer-events:auto;
+  opacity:0; visibility:hidden;
+  transition:opacity 600ms var(--e-soft), visibility 0s linear 600ms, color 300ms;
+}
+#gate.is-set .gate__skip{ opacity:1; visibility:visible; transition-delay:0s; }
+#gate.is-cutting .gate__skip{ opacity:0; visibility:hidden; }
+.gate__skip:hover{ color:var(--accent); }
+
+/* Beim Heben zieht jede Bahn den darunterliegenden Streifen der
+   Seite mit. Gleiche Dauer und Kurve wie die Strähnen — die
+   Verzögerung wird zur Laufzeit aus der x-Position gesetzt. */
+.lift{
+  transform:translateY(64px); opacity:0;
+  transition:transform 1300ms var(--e-expo), opacity 800ms var(--e-soft);
+}
+.lift.is-lifted{ transform:translateY(0); opacity:1; }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+/* Die Leiste liegt ueber die volle Fensterbreite, ihr Inhalt aber
+   steht auf denselben Kanten wie jede Sektion — sonst wandert die
+   Wortmarke auf grossen Monitoren nach aussen weg. */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:800;
+  padding:1.15rem 0;
+  transition:background 500ms var(--e-soft), border-color 500ms, padding 500ms var(--e-soft);
+  border-bottom:1px solid transparent;
+}
+.nav__inner{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.nav.is-stuck{
+  background:rgba(237,228,211,.88);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom-color:var(--line);
+  padding-top:.8rem; padding-bottom:.8rem;
+}
+.nav__mark{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:1.02rem; letter-spacing:0.42em; text-indent:0.42em;
+  color:var(--ink-strong); white-space:nowrap;
+}
+.nav__links{ display:flex; gap:2.4rem; }
+
+/* Hover: Text fährt hoch, Duplikat kommt nach — kein Unterstrich */
+.swap{ display:inline-block; overflow:hidden; vertical-align:bottom; position:relative; }
+.swap span{ display:block; transition:transform 520ms var(--e-expo); }
+.swap span:last-child{
+  position:absolute; inset:0; transform:translateY(100%); color:var(--accent);
+}
+.swap:hover span:first-child{ transform:translateY(-100%); }
+.swap:hover span:last-child{ transform:translateY(0); }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.7rem;
+  padding:.72rem 1.4rem; border:1px solid var(--line);
+  font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:0.24em;
+  color:var(--ink-strong); background:transparent; cursor:pointer;
+  font-family:'Jost',sans-serif;
+  position:relative; overflow:hidden; isolation:isolate;
+  transition:color 420ms var(--e-soft), border-color 420ms var(--e-soft);
+}
+/* Füllung wischt von unten — keine Farbüberblendung */
+.btn::before{
+  content:''; position:absolute; inset:0; z-index:-1;
+  background:var(--ink-strong); transform:translateY(101%);
+  transition:transform 560ms var(--e-expo);
+}
+.btn:hover{ color:var(--paper); border-color:var(--ink-strong); }
+.btn:hover::before{ transform:translateY(0); }
+.btn__dot{
+  width:5px; height:5px; border-radius:50%; background:var(--accent);
+  transition:background 420ms;
+}
+.btn:hover .btn__dot{ background:var(--paper); }
+
+/* ============================================================
+   BURGER UND VOLLBILDMENÜ
+   ============================================================ */
+.burger{
+  display:none; position:relative; z-index:2;
+  width:46px; height:46px; margin-right:-10px;
+  background:none; border:0; cursor:pointer; padding:0;
+}
+.burger i{
+  position:absolute; left:11px; width:24px; height:1.5px;
+  background:var(--ink-strong); border-radius:2px;
+  transition:transform 520ms var(--e-expo), width 420ms var(--e-expo), opacity 240ms;
+}
+/* Ungleich lang — verrät Absicht, wirkt weniger nach Baukasten */
+.burger i:nth-child(1){ top:20px; }
+.burger i:nth-child(2){ top:26px; width:15px; }
+.burger[aria-expanded="true"] i:nth-child(1){ transform:translateY(3px) rotate(45deg); }
+.burger[aria-expanded="true"] i:nth-child(2){ transform:translateY(-3px) rotate(-45deg); width:24px; }
+
+.menu{
+  position:fixed; inset:0; z-index:795;
+  background:var(--paper);
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:calc(72px + env(safe-area-inset-top)) var(--gut)
+          calc(2rem + env(safe-area-inset-bottom));
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 720ms var(--e-expo);
+}
+.menu.is-open{ clip-path:inset(0 0 0 0); }
+.menu[hidden]{ display:none; }
+
+.menu__nav{ display:flex; flex-direction:column; margin-top:auto; }
+.menu__nav a{
+  display:flex; align-items:baseline; gap:1rem;
+  padding:.62rem 0; border-bottom:var(--rule);
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:clamp(2.1rem,10vw,3.2rem); line-height:1.1;
+  color:var(--ink-strong);
+}
+.menu__nav a span{
+  font-family:'Jost',sans-serif; font-size:var(--fs-meta);
+  letter-spacing:.24em; color:var(--muted);
+}
+.menu__nav a:active{ color:var(--accent); }
+
+/* Zeilen steigen versetzt herein, sobald das Feld offen ist */
+[data-mi]{
+  opacity:0; transform:translateY(20px);
+  transition:opacity 560ms var(--e-soft), transform 760ms var(--e-expo);
+}
+.menu.is-open [data-mi]{ opacity:1; transform:translateY(0); }
+.menu.is-open [data-mi]:nth-child(1){ transition-delay:180ms }
+.menu.is-open [data-mi]:nth-child(2){ transition-delay:240ms }
+.menu.is-open [data-mi]:nth-child(3){ transition-delay:300ms }
+.menu.is-open [data-mi]:nth-child(4){ transition-delay:360ms }
+.menu.is-open [data-mi]:nth-child(5){ transition-delay:420ms }
+.menu.is-open .menu__foot{ transition-delay:480ms }
+
+.menu__foot{ margin-top:2.5rem; }
+.menu__addr{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:1.25rem; color:var(--ink); line-height:1.3; margin-bottom:1.2rem;
+}
+
+/* ============================================================
+   REVEALS — Maskenschnitt statt Opazität
+   ============================================================ */
+.rv{ clip-path:inset(0 0 101% 0); transition:clip-path 1150ms var(--e-expo); }
+.rv > *{ transform:translateY(28px); transition:transform 1150ms var(--e-expo); }
+.rv.is-in{ clip-path:inset(0 0 -6% 0); }
+.rv.is-in > *{ transform:translateY(0); }
+
+.rv-line{ overflow:hidden; display:block; }
+.rv-line > span{
+  display:block; transform:translateY(105%);
+  transition:transform 1250ms var(--e-expo);
+}
+.rv-line.is-in > span{ transform:translateY(0); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  min-height:100svh; display:flex; flex-direction:column;
+  justify-content:flex-end; padding-bottom:clamp(2rem,6vh,4.5rem); position:relative;
+}
+.hero__grid{
+  display:grid; grid-template-columns:1fr auto; gap:2rem clamp(1rem,4vw,4rem);
+  align-items:end;
+}
+@media (max-width:1000px){ .hero__grid{ grid-template-columns:1fr; } }
+
+.hero__title{ font-size:var(--fs-display); }
+.hero__title em{
+  font-style:italic; font-weight:400;
+  /* Der kühle Ton sitzt genau auf dem Wort, das die Farbe meint */
+  color:var(--accent);
+}
+.hero__meta{ max-width:30ch; }
+.hero__meta p{ color:var(--muted); }
+
+.hero__strip{
+  display:flex; gap:0; margin-top:clamp(2rem,5vh,3.4rem);
+  border-top:var(--rule); padding-top:1.1rem;
+}
+.hero__scroll{
+  display:flex; align-items:center; gap:.8rem; color:var(--muted);
+  font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:0.3em;
+}
+.hero__scroll i{
+  width:34px; height:1px; background:var(--line); position:relative; overflow:hidden;
+}
+.hero__scroll i::after{
+  content:''; position:absolute; inset:0; background:var(--accent);
+  transform:translateX(-100%); animation:trace 2.6s var(--e-soft) infinite;
+}
+@keyframes trace{
+  0%{ transform:translateX(-100%) } 55%{ transform:translateX(0) } 100%{ transform:translateX(100%) }
+}
+
+/* Farbring — sechs echte Haartöne, das Werkzeug der Coloristin.
+   margin-left:auto haelt ihn auch dann an der rechten Kante, wenn
+   die Zeile umbricht — space-between allein wuerde ihn links absetzen. */
+.ring{ display:flex; gap:.42rem; align-items:flex-end; margin-left:auto; }
+.ring__sw{
+  width:clamp(26px,3.4vw,42px); border-radius:1px;
+  transform-origin:bottom center;
+  transition:height 620ms var(--e-expo), transform 420ms var(--e-expo);
+  cursor:default;
+}
+.ring__sw:hover{ transform:translateY(-8px); }
+
+/* ============================================================
+   LAUFBAND
+   ============================================================ */
+.band{
+  border-top:var(--rule); border-bottom:var(--rule);
+  overflow:hidden; padding:1.05rem 0; margin-top:0;
+}
+.band__track{
+  display:flex; gap:3.2rem; width:max-content;
+  animation:slide 42s linear infinite;
+}
+.band:hover .band__track{ animation-play-state:paused; }
+@keyframes slide{ to{ transform:translateX(-50%); } }
+.band__item{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:clamp(1.1rem,2vw,1.6rem); color:var(--ink);
+  display:flex; align-items:center; gap:3.2rem; white-space:nowrap;
+}
+.band__item::after{
+  content:''; width:5px; height:5px; border-radius:50%; background:var(--t-karamell);
+}
+
+/* ============================================================
+   HAARSEQUENZ — scrollgesteuert
+   Einzelbilder auf Canvas. Video-Scrubbing ruckelt auf iOS,
+   weil der Player zum naechsten Keyframe springen muss.
+   ============================================================ */
+/* Ohne Frames: eine Bildschirmhoehe Standbild. Liegen Frames in
+   /frames/, schaltet das Skript auf .is-ready und die Sektion
+   wird zum scrollgesteuerten Laufweg. Beides aus derselben Markup. */
+.reel{ position:relative; height:100svh; }
+.reel.is-ready{ height:290vh; }
+
+.reel__stage{
+  position:sticky; top:0; height:100svh; overflow:hidden;
+  background:var(--paper-2); isolation:isolate;
+}
+.reel__still{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; display:block;
+  /* Etwas mehr Kontrast als bei .pic — ueber die Papierbaender des
+     Vignette-Verlaufs verliert das Bild sonst zu viel Zeichnung. */
+  filter:sepia(.12) saturate(.74) contrast(1.12) brightness(.99);
+}
+/* Gradation wie bei .pic, nur als eigene Ebene ueber dem Standbild */
+.reel__wash{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:var(--t-karamell); mix-blend-mode:soft-light; opacity:.42;
+}
+.reel__canvas{
+  position:absolute; inset:0; width:100%; height:100%; display:none; z-index:2;
+}
+.reel.is-ready .reel__canvas{ display:block; }
+.reel.is-ready .reel__still,
+.reel.is-ready .reel__wash{ display:none; }
+.reel__vig,.reel__cap,.reel__bar{ z-index:3; }
+.reel__bar{ display:none; }
+.reel.is-ready .reel__bar{ display:block; }
+/* Papierton laeuft ueber die Kanten, damit das Bild eingebettet wirkt */
+/* Der untere Verlauf ist kein Schmuck: die Bildunterschrift steht
+   in dunklem Bodoni auf einem hellen, unruhigen Foto. Ohne kraeftige
+   Papierbank darunter ist sie schlicht nicht lesbar. */
+.reel__vig{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      var(--paper) 0%, rgba(237,228,211,.35) 12%, transparent 26%,
+      transparent 46%, rgba(237,228,211,.72) 78%, var(--paper) 96%),
+    radial-gradient(120% 75% at 50% 50%, transparent 42%, rgba(46,38,32,.22) 100%);
+}
+.reel__cap{
+  position:absolute; left:0; right:0; bottom:clamp(2rem,9vh,5rem);
+  padding-inline:var(--edge);
+  display:flex; justify-content:space-between; align-items:flex-end;
+  gap:2rem; flex-wrap:wrap; pointer-events:none;
+}
+.reel__line{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:clamp(1.6rem,4.6vw,3.2rem); line-height:1.05;
+  color:var(--ink-strong); max-width:16ch;
+  text-shadow:0 1px 22px rgba(237,228,211,.75);
+}
+/* Fortschrittsbalken — zeigt, dass Scrollen die Bewegung steuert */
+.reel__bar{
+  position:absolute; left:0; right:0; bottom:clamp(1rem,4vh,2rem);
+  margin-inline:var(--edge);
+  height:1px; background:rgba(46,38,32,.18);
+}
+.reel__bar i{
+  display:block; height:100%; width:0%; background:var(--accent);
+}
+@media (max-width:760px){
+  .reel{ height:230vh; }
+  .reel__cap{ bottom:clamp(3rem,12vh,6rem); }
+}
+
+/* ============================================================
+   SEKTIONEN
+   ============================================================ */
+/* padding-block, NICHT die Kurzform. `padding: X 0` wuerde den
+   seitlichen Abstand von .wrap ueberschreiben — beide Selektoren
+   haben dieselbe Spezifitaet, .sec steht spaeter und gewinnt.
+   Genau daran klebte die Schrift am Bildschirmrand. */
+.sec{ padding-block:clamp(4.5rem,13vh,9rem); }
+.sec--tight{ padding-top:clamp(3rem,8vh,5rem); }
+
+.sec__head{
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:2rem; flex-wrap:wrap; margin-bottom:clamp(2.2rem,6vh,4rem);
+  border-bottom:var(--rule); padding-bottom:1.1rem;
+}
+.sec__title{ font-size:var(--fs-h2); }
+
+/* Editorial: zwei Spalten, ungleich gewichtet */
+.ed{ display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(2rem,6vw,6rem); align-items:start; }
+@media (max-width:900px){ .ed{ grid-template-columns:1fr; } }
+.ed__lead{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:var(--fs-h3); line-height:1.28; color:var(--ink-strong);
+}
+.ed__body p{ color:var(--muted); max-width:var(--measure); }
+.ed__body strong{ color:var(--ink); font-weight:400; }
+.ed__fig{ margin:2.2rem 0 0; }
+.ed__fig .pic{ aspect-ratio:3/2; }
+.ed__figcap{
+  margin-top:.8rem; font-size:var(--fs-meta); text-transform:uppercase;
+  letter-spacing:.24em; color:var(--muted);
+}
+
+/* ============================================================
+   LEISTUNGEN — Zeilen, die beim Hover die Farbe zeigen
+   ============================================================ */
+.svc{ border-top:var(--rule); }
+.svc__row{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
+  gap:1.4rem; padding:clamp(1.1rem,2.6vh,1.7rem) 0;
+  border-bottom:var(--rule); position:relative; cursor:default;
+  transition:padding-left 640ms var(--e-expo);
+}
+.svc__row::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+  background:var(--sw,var(--accent)); transform:scaleY(0); transform-origin:bottom;
+  transition:transform 560ms var(--e-expo);
+}
+.svc__row:hover{ padding-left:1.5rem; }
+.svc__row:hover::before{ transform:scaleY(1); transform-origin:top; }
+.svc__name{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:clamp(1.3rem,2.7vw,2.05rem); color:var(--ink-strong);
+  transition:color 480ms var(--e-soft);
+}
+.svc__row:hover .svc__name{ color:var(--accent); }
+.svc__note{ color:var(--muted); font-size:.9rem; text-align:right; max-width:36ch; }
+@media (max-width:760px){
+  .svc__row{ grid-template-columns:auto 1fr; }
+  .svc__note{ grid-column:1/-1; text-align:left; }
+}
+.svc__idx{ color:var(--muted); font-size:var(--fs-meta); letter-spacing:.2em; }
+
+/* ============================================================
+   PREISE — der Längenschalter
+   ============================================================ */
+.len{
+  display:flex; align-items:flex-end; gap:0; position:relative;
+  border:1px solid var(--line); padding:4px; width:max-content;
+}
+.len__ind{
+  position:absolute; top:4px; bottom:4px; left:4px;
+  background:var(--ink); z-index:0;
+  transition:transform 640ms var(--e-expo), width 640ms var(--e-expo);
+}
+.len__btn{
+  position:relative; z-index:1; background:none; border:0; cursor:pointer;
+  font-family:'Jost',sans-serif; color:var(--muted);
+  padding:.75rem 1.5rem; display:flex; flex-direction:column;
+  align-items:center; gap:.5rem;
+  font-size:var(--fs-meta); letter-spacing:.26em; text-transform:uppercase;
+  transition:color 420ms var(--e-soft);
+}
+.len__btn[aria-selected="true"]{ color:var(--paper); }
+/* Strichlänge = Haarlänge. Das Steuerelement erklärt sich selbst. */
+.len__tick{ width:1px; background:currentColor; opacity:.55; transition:height 560ms var(--e-expo); }
+.len__btn:nth-child(2) .len__tick{ height:9px; }
+.len__btn:nth-child(3) .len__tick{ height:16px; }
+.len__btn:nth-child(4) .len__tick{ height:24px; }
+
+.len__desc{ color:var(--muted); font-size:.88rem; margin-top:1rem; min-height:1.5em; }
+
+.tbl{ border-top:var(--rule); margin-top:clamp(1.8rem,4vh,2.6rem); }
+.tbl__cat{
+  font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:.34em;
+  color:var(--accent); padding:clamp(1.8rem,4vh,2.6rem) 0 .8rem;
+  border-bottom:var(--rule);
+}
+.tbl__row{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1.5rem;
+  padding:.95rem 0; border-bottom:var(--rule);
+  transition:background 420ms var(--e-soft), padding-left 520ms var(--e-expo);
+}
+.tbl__row:hover{ background:var(--paper-2); padding-left:.9rem; }
+.tbl__svc{ color:var(--ink); }
+.tbl__svc small{ display:block; color:var(--muted); font-size:.8rem; letter-spacing:.02em; }
+.tbl__price{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:clamp(1.1rem,2vw,1.45rem); color:var(--ink-strong);
+  white-space:nowrap; overflow:hidden; display:block;
+}
+.tbl__price span{
+  display:inline-block;
+  transition:transform 340ms var(--e-expo), opacity 240ms var(--e-soft);
+}
+.tbl__price.is-out span{ transform:translateY(-105%); opacity:0; }
+.tbl__price.is-pre span{ transform:translateY(105%); opacity:0; transition:none; }
+
+/* ============================================================
+   ARBEITEN — Farbfelder als Platzhalter, später echte Fotos
+   ============================================================ */
+.gal{ display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(.6rem,1.4vw,1.1rem); }
+.gal__fig{ position:relative; overflow:hidden; margin:0; }
+/* Feine Innenkante — sonst schweben die Flächen auf dem hellen Papier */
+.gal__fig::after{
+  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(44,37,33,.14);
+}
+/* Alle Quellfotos sind 3:2 quer. Hochformat-Rahmen wuerden sie
+   hart beschneiden, deshalb bleibt das Seitenverhaeltnis gleich
+   und nur die Breite wechselt — ruhiger und ohne Verlust. */
+.gal__fig{ aspect-ratio:3/2; }
+.gal__fig:nth-child(1){ grid-column:span 7; }
+.gal__fig:nth-child(2){ grid-column:span 5; align-self:end; }
+.gal__fig:nth-child(3){ grid-column:span 5; }
+.gal__fig:nth-child(4){ grid-column:span 7; align-self:start; }
+@media (max-width:760px){
+  .gal__fig:nth-child(n){ grid-column:span 12; aspect-ratio:4/3; }
+}
+.gal__inner{
+  position:absolute; inset:0; transform:scale(1.16);
+  transition:transform 1400ms var(--e-expo);
+}
+.gal__fig.is-in .gal__inner{ transform:scale(1); }
+.gal__fig .gal__inner{ transition:transform 1400ms var(--e-expo); }
+.gal__fig:hover .gal__inner{ transform:scale(1.05); }
+.gal__cap{
+  position:absolute; left:0; bottom:0; right:0; z-index:2;
+  padding:1rem 1.15rem; display:flex; justify-content:space-between; gap:1rem;
+  font-size:var(--fs-meta); letter-spacing:.2em; text-transform:uppercase;
+  color:#F2F0EA; background:linear-gradient(0deg,rgba(24,17,13,.68),transparent);
+}
+/* ============================================================
+   FOTOS — Hausgradation
+   Der Salon ist kuehl gebaut: weisse Waende, Sichtbeton, Chrom,
+   graue Samtstuehle. Das Papier dieser Seite ist warm. Roh
+   nebeneinander sehen beide nach zwei verschiedenen Marken aus.
+
+   Deshalb eine Gradation, kein Duotone: die Bilder bleiben
+   erkennbar der Salon, sie werden nur auf dasselbe Papier
+   gedruckt. Weiss wird Creme, das Grau behaelt seine Kuehle.
+   Getestet gegen Sepia, Duotone und ungradiert — siehe Notiz.
+   ============================================================ */
+.pic{
+  position:relative; overflow:hidden;
+  background:var(--paper-2);
+  isolation:isolate;   /* sonst mischt sich der Papierhintergrund ein */
+}
+.pic img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:sepia(.12) saturate(.72) contrast(1.06) brightness(1.02);
+}
+.pic::before,.pic::after{
+  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+}
+/* Karamell in die Mitteltoene — bindet an --accent an */
+.pic::before{ background:var(--t-karamell); mix-blend-mode:soft-light; opacity:.42; }
+/* Honig oben, Espresso unten — gibt dem Bild eine Richtung */
+.pic::after{
+  background:linear-gradient(180deg, rgba(210,174,104,.14), rgba(40,27,21,.10));
+  mix-blend-mode:multiply; opacity:.55;
+}
+/* .pic steht spaeter im Blatt als .gal__inner und wuerde dessen
+   position:absolute mit gleicher Spezifitaet ueberschreiben. Dann
+   fuellt das Bild seinen Rahmen nicht mehr aus — auf dem Handy
+   sichtbar, weil der Rahmen dort 4:5 statt 3:2 ist. */
+.gal__inner.pic{ position:absolute; inset:0; }
+
+/* ============================================================
+   BESUCH
+   ============================================================ */
+.visit{ display:grid; grid-template-columns:1.2fr 1fr; gap:clamp(2rem,6vw,5rem); }
+@media (max-width:900px){ .visit{ grid-template-columns:1fr; } }
+.hrs{ border-top:var(--rule); }
+.hrs__row{
+  display:flex; justify-content:space-between; gap:1rem;
+  padding:.82rem 0; border-bottom:var(--rule);
+}
+.hrs__row dt{ color:var(--muted); }
+.hrs__row dd{ margin:0; color:var(--ink); }
+.hrs__row.is-today dt,.hrs__row.is-today dd{ color:var(--accent); }
+
+.addr{ font-family:'Bodoni Moda',Didot,Georgia,serif; font-size:var(--fs-h3); color:var(--ink-strong); line-height:1.24; }
+
+/* Die Bewertung steht direkt am Buchungsknopf — dort, wo jemand
+   den letzten Zweifel hat, nicht oben als Schmuck. */
+.rating{
+  display:flex; align-items:baseline; gap:.7rem;
+  margin-top:1.4rem; font-size:var(--fs-meta);
+  text-transform:uppercase; letter-spacing:.2em; color:var(--muted);
+}
+.rating__num{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:1.7rem; letter-spacing:0; text-transform:none;
+  color:var(--accent); line-height:1;
+}
+.visit__fig{ margin:2.6rem 0 0; }
+.visit__fig .pic{ aspect-ratio:3/2; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+/* wie .sec: nur die Blockachse anfassen, sonst faellt der Seitenrand weg */
+.foot{ border-top:var(--rule); padding-block:clamp(2.5rem,7vh,4rem) 2rem; }
+.foot__grid{ display:flex; justify-content:space-between; gap:2rem; flex-wrap:wrap; align-items:flex-end; }
+.foot__legal{ display:flex; gap:1.6rem; flex-wrap:wrap; color:var(--muted); font-size:.85rem; }
+.foot__mark{
+  font-family:'Bodoni Moda',Didot,Georgia,serif;
+  font-size:clamp(2.4rem,9vw,6.5rem); color:var(--line);
+  letter-spacing:.06em; line-height:1; margin-top:2.5rem;
+  user-select:none;
+}
+
+/* ============================================================
+   HANDY
+   Die Mehrheit kommt über die Instagram-Bio auf ein iPhone.
+   ============================================================ */
+
+/* Touch kennt kein Hover. iOS friert den Zustand nach dem Tap ein,
+   deshalb werden alle Hover-Effekte hier zurückgenommen — und der
+   Farbbalken der Leistungen wird stattdessen dauerhaft gezeigt. */
+@media (hover: none){
+  .swap span:first-child{ transform:none; }
+  .swap span:last-child{ display:none; }
+
+  .btn::before{ display:none; }
+  .btn:hover{ color:var(--ink-strong); border-color:var(--line); }
+  .btn:active{ background:var(--ink-strong); color:var(--paper); border-color:var(--ink-strong); }
+  .btn:active .btn__dot{ background:var(--paper); }
+
+  .svc__row::before{ transform:scaleY(1); }
+  .svc__row:hover{ padding-left:1.5rem; }
+  .svc__row:hover .svc__name{ color:var(--ink-strong); }
+  .svc__row{ padding-left:1.5rem; }
+
+  .tbl__row:hover{ background:transparent; padding-left:0; }
+  .gal__fig:hover .gal__inner{ transform:scale(1); }
+  .ring__sw:hover{ transform:none; }
+}
+
+@media (max-width:900px){
+  /* Auf dem Handy führt der Burger, nicht die Linkleiste */
+  .nav__links{ display:none; }
+  .btn--nav{ display:none; }
+  .burger{ display:block; }
+
+  .nav{ padding-top:calc(.9rem + env(safe-area-inset-top)); padding-bottom:.9rem; }
+  .nav__mark{ font-size:.92rem; letter-spacing:.3em; text-indent:.3em; }
+
+  .btn{ min-height:46px; padding:.8rem 1.25rem; }
+
+  /* Platz für die Aktionsleiste, sonst verdeckt sie den Footer */
+  body{ padding-bottom:calc(56px + env(safe-area-inset-bottom)); }
+
+  .sec{ padding-block:clamp(3.5rem,9vh,5rem); }
+  .sec__head{ margin-bottom:2rem; }
+  .hero{ padding-bottom:2.5rem; }
+  /* Nicht "none": auf einem Tablet ergaebe das 90 Zeichen pro Zeile */
+  .hero__meta{ max-width:44ch; }
+  .visit{ gap:2.5rem; }
+}
+
+/* ============================================================
+   HANDY — Typografie und Rhythmus
+   Ein Telefon zeigt rund sechs Zeilen. Alles muss auf einen
+   Blick lesbar sein, ohne dass die Seite billiger wirkt.
+   ============================================================ */
+@media (max-width:760px){
+  :root{
+    /* --gut wird hier NICHT mehr ueberschrieben. Die clamp() oben
+       liefert auf 390 px schon 30 px und waechst danach stetig mit —
+       ein fester Wert riss an der 760er-Grenze eine Stufe auf. */
+    /* Display kleiner, Fliesstext größer — auf Armlänge gelesen */
+    --fs-display: clamp(3rem, 15vw, 5rem);
+    --fs-h2:      clamp(2.1rem, 9.5vw, 3rem);
+    --fs-h3:      1.32rem;
+    --fs-body:    1.02rem;
+    --fs-meta:    0.68rem;
+  }
+
+  body{ line-height:1.66; }
+
+  /* Sperrung zurücknehmen — auf schmalen Zeilen zerfasert sie */
+  .label{ letter-spacing:0.22em; }
+
+  .hero__title{ letter-spacing:-0.025em; }
+  .hero__grid{ gap:1.8rem; }
+  .hero__strip{ padding-top:1.4rem; }
+
+  .sec__head{
+    flex-direction:column; align-items:flex-start; gap:.55rem;
+    padding-bottom:.9rem;
+  }
+  .sec__title{ letter-spacing:-0.02em; }
+
+  .ed{ gap:1.8rem; }
+  .ed__lead{ font-size:1.42rem; line-height:1.32; }
+  .ed__body p{ max-width:none; }
+
+  /* Leistungen: Nummer über den Namen, Notiz darunter eingerückt */
+  .svc__row{
+    grid-template-columns:1fr; gap:.3rem;
+    padding:1.15rem 0 1.15rem 1.1rem;
+  }
+  .svc__row::before{ transform:scaleY(1); }
+  .svc__idx{ order:-1; }
+  .svc__name{ font-size:1.62rem; line-height:1.12; }
+  .svc__note{ font-size:.88rem; line-height:1.5; color:var(--muted); }
+
+  /* Preise: Leistung und Preis nebeneinander, Zusatz darunter */
+  .tbl__cat{ padding-top:2.1rem; letter-spacing:.3em; }
+  .tbl__row{ padding:.9rem 0; gap:1rem; }
+  .tbl__svc{ line-height:1.35; }
+  .tbl__svc small{ margin-top:.15rem; }
+  .tbl__price{ font-size:1.22rem; }
+
+  .len__desc{ font-size:.92rem; }
+
+  .hrs__row{ padding:.78rem 0; }
+
+  .addr{ font-size:1.5rem; }
+
+  .foot{ padding-top:2.6rem; }
+  .foot__grid{ flex-direction:column; align-items:flex-start; gap:1rem; }
+  .foot__legal{ gap:1.4rem; }
+  .foot__mark{ font-size:2.9rem; margin-top:2rem; letter-spacing:.04em; }
+}
+
+/* Aktionsleiste unten — buchen und anrufen ohne Scrollen */
+.dock{
+  position:fixed; left:0; right:0; bottom:0; z-index:790;
+  display:none; gap:1px; background:var(--line);
+  border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
+  transform:translateY(115%);
+  transition:transform 620ms var(--e-expo);
+}
+.dock.is-up{ transform:translateY(0); }
+body.is-locked .dock{ transform:translateY(115%); }
+.dock a{
+  flex:1; display:flex; align-items:center; justify-content:center; gap:.6rem;
+  min-height:56px; font-family:'Jost',sans-serif;
+  font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:.24em;
+}
+.dock__call{ background:var(--paper); color:var(--ink); }
+.dock__book{ background:var(--ink-strong); color:var(--paper); }
+.dock__call:active{ background:var(--paper-2); }
+@media (max-width:900px){ .dock{ display:flex; } }
+
+@media (max-width:760px){
+  /* Galerie wird zum Wischstreifen statt vier gestapelter Klötze —
+     kürzerer Scrollweg, und die Bilder bleiben groß. */
+  .gal{
+    display:flex; gap:.7rem; overflow-x:auto;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    margin-inline:calc(var(--gut) * -1); padding-inline:var(--gut);
+    scrollbar-width:none;
+  }
+  .gal::-webkit-scrollbar{ display:none; }
+  .gal__fig:nth-child(n){
+    flex:0 0 76%; aspect-ratio:4/5; scroll-snap-align:center;
+  }
+  .svc__note{ font-size:.85rem; }
+}
+
+@media (max-width:600px){
+  /* Längenschalter über die volle Breite, drei fette Tippziele */
+  .len{ width:100%; }
+  .len__btn{ flex:1; padding:.9rem .4rem; }
+
+  .gate__word{ font-size:1.3rem; letter-spacing:.32em; text-indent:.32em; }
+  .gate__skip{ right:1.25rem; bottom:calc(1.5rem + env(safe-area-inset-bottom)); }
+  .foot__grid{ gap:1.2rem; }
+}
+
+@media (max-width:480px){
+  /* "FRISEURSALON IM HERZEN VON MÜNCHEN" ist 33 Zeichen. Bei .22em
+     frisst allein die Sperrung 93 px — mehr als drei Seitenraender.
+     Auf dem Telefon wiegt die Luft am Rand mehr als die Luft
+     zwischen den Buchstaben. */
+  .label{ letter-spacing:0.16em; }
+}
+
+/* Sehr schmale Geräte: Tracking der Wortmarke weiter zurücknehmen */
+@media (max-width:360px){
+  .gate__word{ font-size:1.1rem; letter-spacing:.24em; text-indent:.24em; }
+  .nav__mark{ letter-spacing:.22em; text-indent:.22em; }
+}
+
+/* ============================================================
+   BEWEGUNG AUS
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  html{ scroll-behavior:auto; }
+  .rv{ clip-path:none; } .rv > *{ transform:none; }
+  .rv-line > span{ transform:none; }
+  .lift{ transform:none; opacity:1; }
+  .cut__strip{ transform:none; }
+  .blade,.blade__glint{ display:none; }
+  .gal__inner{ transform:none; }
+  /* Ohne Bewegung: ein Standbild statt drei Bildschirmhöhen Scrollweg */
+  .reel{ height:100svh !important; }
+  body::after{ display:none; }
+}
+</style>
+
+<!-- Ohne JavaScript bleibt die Seite sonst hinter dem Vorhang gesperrt -->
+<noscript>
+<style>
+  #gate{ display:none !important; }
+  body.is-locked{ overflow:auto; }
+  .lift{ transform:none; opacity:1; }
+  .rv{ clip-path:none; } .rv > *{ transform:none; }
+  .rv-line > span{ transform:none; }
+  .gal__inner{ transform:scale(1); }
+</style>
+</noscript>
+</head>
+<body class="is-locked">
+
+<!-- ============================ FLÜGEL ============================ -->
+<div id="gate">
+  <div class="cut" id="cut" aria-hidden="true"></div>
+  <div class="blade" aria-hidden="true"></div>
+  <div class="blade__glint" aria-hidden="true"></div>
+  <div class="gate__mark">
+    <div class="gate__word" id="gateWord">
+      <span class="base">Bellarose</span>
+      <span class="paint" aria-hidden="true">Bellarose</span>
+      <span class="gate__brush" id="gateBrush" aria-hidden="true"></span>
+    </div>
+    <div class="gate__rule" aria-hidden="true"></div>
+    <div class="gate__sub label">Colour &amp; Cut &middot; München</div>
+  </div>
+  <button class="gate__skip label" id="gateSkip" type="button">Überspringen</button>
+</div>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+ <div class="nav__inner wrap">
+  <a class="nav__mark lift" href="#top">BELLAROSE</a>
+  <nav class="nav__links label lift" aria-label="Hauptnavigation">
+    <a class="swap" href="#salon"><span>Salon</span><span>Salon</span></a>
+    <a class="swap" href="#leistungen"><span>Leistungen</span><span>Leistungen</span></a>
+    <a class="swap" href="#preise"><span>Preise</span><span>Preise</span></a>
+    <a class="swap" href="#besuch"><span>Besuch</span><span>Besuch</span></a>
+  </nav>
+  <a class="btn btn--nav lift" href="https://buchung.treatwell.de/ort/100042225/menue/" target="_blank" rel="noopener"><span class="btn__dot"></span>Termin buchen</a>
+
+  <button class="burger lift" id="burger" type="button"
+          aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu">
+    <i></i><i></i>
+  </button>
+ </div>
+</header>
+
+<!-- Vollbildmenü, nur auf dem Handy -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menü" hidden>
+  <nav class="menu__nav">
+    <a href="#salon"      data-mi><span>01</span>Salon</a>
+    <a href="#leistungen" data-mi><span>02</span>Leistungen</a>
+    <a href="#preise"     data-mi><span>03</span>Preise</a>
+    <a href="#arbeiten"   data-mi><span>04</span>Im Salon</a>
+    <a href="#besuch"     data-mi><span>05</span>Besuch</a>
+  </nav>
+  <div class="menu__foot" data-mi>
+    <p class="menu__addr">Kaulbachstraße 36<br>80539 München</p>
+    <a class="btn" href="tel:+498937025244"><span class="btn__dot"></span>089 37025244</a>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero wrap">
+  <div class="hero__grid">
+    <div>
+      <span class="label lift">Friseursalon im Herzen von München</span>
+      <h1 class="hero__title lift" style="margin-top:1.4rem">
+        <span style="display:block">Farbe, die</span>
+        <span style="display:block"><em>mitwächst</em>.</span>
+      </h1>
+    </div>
+    <div class="hero__meta lift">
+      <div>
+        <p>Balayage, Strähnen und Glossing von einem kleinen Team, das seine Kundinnen beim Namen kennt.</p>
+        <p style="color:var(--ink)">Preise nach Haarlänge — vorher einsehbar, nicht erst an der Kasse.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__strip">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%; gap:2rem; flex-wrap:wrap">
+      <span class="hero__scroll lift">Scrollen <i></i></span>
+      <div class="ring" id="ring" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LAUFBAND ============================ -->
+<div class="band" aria-hidden="true">
+  <div class="band__track" id="bandTrack"></div>
+</div>
+
+<!-- ============================ HAARSEQUENZ ============================
+     Frames gehoeren nach /frames/ als hair-001.webp ... hair-048.webp
+     Erzeugung siehe Notiz unten im Skript.
+     ==================================================================== -->
+<section class="reel" id="reel">
+  <div class="reel__stage">
+    <img class="reel__still" src="bilder/salon-spiegelplaetze.jpg" width="1280" height="800"
+         alt="Zwei Bedienplätze mit beleuchteten Bogenspiegeln und verchromten Sesseln">
+    <span class="reel__wash" aria-hidden="true"></span>
+    <canvas class="reel__canvas" id="reelCanvas" aria-hidden="true"></canvas>
+    <div class="reel__vig" aria-hidden="true"></div>
+    <div class="reel__cap">
+      <p class="reel__line" id="reelLine">Zwei Plätze. Kein Fließband.</p>
+    </div>
+    <div class="reel__bar" aria-hidden="true"><i id="reelBar"></i></div>
+  </div>
+</section>
+
+<!-- ============================ SALON ============================ -->
+<section class="sec wrap" id="salon">
+  <div class="sec__head">
+    <h2 class="sec__title rv-line" data-rv><span>Der Salon</span></h2>
+    <span class="label">Seit 2019 &middot; Inhabergeführt</span><!-- ERSETZEN: Gründungsjahr -->
+  </div>
+  <div class="ed">
+    <div class="rv" data-rv>
+      <div>
+        <p class="ed__lead">Klein genug, dass wir uns Zeit nehmen. Groß genug, dass wir alles können, was Farbe braucht.</p>
+        <figure class="ed__fig">
+          <div class="pic"><img src="bilder/salon-team.jpg" width="720" height="480"
+            loading="lazy" decoding="async" alt="Das Team von Bellarose Hairsalon"></div>
+          <figcaption class="ed__figcap">Das Team &middot; Kaulbachstraße 36</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="ed__body rv" data-rv>
+      <div>
+        <p>Die meisten kommen mit einem Foto und der Sorge, dass daraus nichts wird. Wir gehen den Weg vorher durch: was dein Haar aktuell trägt, wie viele Termine es bis zum Ziel braucht und was das kostet. Erst danach mischen wir an.</p>
+        <p>Gearbeitet wird mit <strong>Olaplex</strong> bei jeder Aufhellung, weil Blond ohne Struktur nur zwei Wochen schön aussieht. Und mit <strong>Balayage</strong> als Standard für alle, die nicht alle sechs Wochen wiederkommen wollen — der Ansatz wächst weich heraus statt in einer Linie.</p>
+        <p>Dazu Augenbrauen in Fadentechnik, Kinderschnitte und Herren. Beraten wird auf Deutsch, Englisch und Türkisch.</p><!-- ERSETZEN: Sprachen prüfen -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LEISTUNGEN ============================ -->
+<section class="sec wrap" id="leistungen">
+  <div class="sec__head">
+    <h2 class="sec__title rv-line" data-rv><span>Leistungen</span></h2>
+    <span class="label">Damen &middot; Herren &middot; Kids</span>
+  </div>
+  <div class="svc" id="svc"></div>
+</section>
+
+<!-- ============================ PREISE ============================ -->
+<section class="sec wrap" id="preise">
+  <div class="sec__head">
+    <h2 class="sec__title rv-line" data-rv><span>Preise</span></h2>
+    <span class="label">Stand Juli 2026</span><!-- ERSETZEN bei Preisänderung -->
+  </div>
+
+  <div class="rv" data-rv>
+    <div>
+      <p style="color:var(--muted); max-width:52ch">Farbe und Schnitt kosten nach Haarlänge, weil längeres Haar mehr Produkt und mehr Zeit braucht. Wähl deine Länge — die Tabelle rechnet mit.</p>
+      <div class="len" role="tablist" aria-label="Haarlänge wählen">
+        <div class="len__ind" id="lenInd"></div>
+        <button class="len__btn" role="tab" aria-selected="true"  data-len="S" type="button"><i class="len__tick"></i>S</button>
+        <button class="len__btn" role="tab" aria-selected="false" data-len="M" type="button"><i class="len__tick"></i>M</button>
+        <button class="len__btn" role="tab" aria-selected="false" data-len="L" type="button"><i class="len__tick"></i>L</button>
+      </div>
+      <p class="len__desc" id="lenDesc" aria-live="polite">Kurz bis Kinnlänge</p>
+    </div>
+  </div>
+
+  <div class="tbl" id="tbl"></div>
+</section>
+
+<!-- ============================ ARBEITEN ============================ -->
+<section class="sec wrap" id="arbeiten">
+  <div class="sec__head">
+    <h2 class="sec__title rv-line" data-rv><span>Im Salon</span></h2>
+    <a class="label swap" href="https://www.instagram.com/bellarosehairsalon_/" target="_blank" rel="noopener">
+      <span>@bellarosehairsalon_</span><span>@bellarosehairsalon_</span>
+    </a>
+  </div>
+  <!-- Die Nummerierung ist der Weg von der Straße nach innen —
+       nicht Dekoration. NOCH OFFEN: echte Vorher/Nachher-Bilder
+       von Farbergebnissen, die hier eigentlich hingehören. -->
+  <div class="gal">
+    <figure class="gal__fig" data-rv>
+      <div class="gal__inner pic"><img src="bilder/salon-schaufenster.jpg" width="720" height="480"
+        loading="lazy" decoding="async"
+        alt="Schaufenster des Salons an der Kaulbachstraße mit dem Ausleger-Schild BELLAROSE HAIRSALON"></div>
+      <figcaption class="gal__cap"><span>Von der Straße</span><span>01</span></figcaption>
+    </figure>
+    <figure class="gal__fig" data-rv>
+      <div class="gal__inner pic"><img src="bilder/salon-empfang.jpg" width="720" height="480"
+        loading="lazy" decoding="async"
+        alt="Empfangstresen mit dem Schriftzug Bellarose, darauf Kérastase-Pflegeprodukte"></div>
+      <figcaption class="gal__cap"><span>Empfang</span><span>02</span></figcaption>
+    </figure>
+    <figure class="gal__fig" data-rv>
+      <div class="gal__inner pic"><img src="bilder/salon-innenraum.jpg" width="720" height="480"
+        loading="lazy" decoding="async"
+        alt="Blick in den Salon: Bedienplätze mit Bogenspiegeln, davor Sessel am Schaufenster"></div>
+      <figcaption class="gal__cap"><span>Bedienplatz</span><span>03</span></figcaption>
+    </figure>
+    <figure class="gal__fig" data-rv>
+      <div class="gal__inner pic"><img src="bilder/salon-waschplaetze.jpg" width="720" height="480"
+        loading="lazy" decoding="async"
+        alt="Zwei nebeneinanderliegende Waschplätze mit weißen Keramikbecken"></div>
+      <figcaption class="gal__cap"><span>Waschplatz</span><span>04</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ BESUCH ============================ -->
+<section class="sec wrap" id="besuch">
+  <div class="sec__head">
+    <h2 class="sec__title rv-line" data-rv><span>Besuch uns</span></h2>
+    <span class="label">Termin nach Vereinbarung</span>
+  </div>
+
+  <div class="visit">
+    <div class="rv" data-rv>
+      <div>
+        <p class="addr">Kaulbachstraße 36<br>80539 München</p>
+        <p style="margin-top:1.6rem">
+          <a class="swap" href="tel:+498937025244"><span>089 37025244</span><span>089 37025244</span></a><br>
+          <!-- ERSETZEN: E-Mail-Adresse ist noch geraten, im Eintrag steht keine -->
+          <a class="swap" href="mailto:hallo@bellarosehairsalon.de"><span>hallo@bellarosehairsalon.de</span><span>hallo@bellarosehairsalon.de</span></a>
+        </p>
+        <p style="margin-top:2rem">
+          <a class="btn" href="https://buchung.treatwell.de/ort/100042225/menue/"
+             target="_blank" rel="noopener"><span class="btn__dot"></span>Online buchen</a>
+        </p>
+        <p class="rating">
+          <span class="rating__num">4,9</span>
+          <span>aus 581 Bewertungen bei Google</span>
+        </p>
+
+        <figure class="visit__fig">
+          <div class="pic"><img src="bilder/salon-schaufenster.jpg" width="720" height="480"
+            loading="lazy" decoding="async"
+            alt="Eingang und Schaufenster des Salons in der Kaulbachstraße 36"></div>
+          <figcaption class="ed__figcap">So sieht der Eingang aus</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="rv" data-rv>
+      <dl class="hrs" id="hrs" style="margin:0"></dl>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot wrap">
+  <div class="foot__grid">
+    <div class="foot__legal">
+      <!-- Relativ, nicht /impressum/ — unter github.io/<repo>/ zeigt
+           ein fuehrender Slash auf die Domainwurzel und damit ins Leere. -->
+      <a class="swap" href="impressum/"><span>Impressum</span><span>Impressum</span></a>
+      <a class="swap" href="datenschutz/"><span>Datenschutz</span><span>Datenschutz</span></a>
+    </div>
+    <div class="foot__legal">
+      <a class="swap" href="https://www.instagram.com/bellarosehairsalon_/" target="_blank" rel="noopener"><span>Instagram</span><span>Instagram</span></a>
+      <a class="swap" href="https://www.tiktok.com/@bellarosehairsalon" target="_blank" rel="noopener"><span>TikTok</span><span>TikTok</span></a>
+    </div>
+  </div>
+  <div class="foot__mark" aria-hidden="true">BELLAROSE</div>
+</footer>
+
+<div class="dock" id="dock">
+  <a class="dock__call" href="tel:+498937025244">Anrufen</a>
+  <a class="dock__book" href="https://buchung.treatwell.de/ort/100042225/menue/" target="_blank" rel="noopener">Termin buchen</a>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Daten ---------- */
+var TONES = [
+  { n:'Honigblond', c:'var(--t-honig)',    h:46 },
+  { n:'Karamell',   c:'var(--t-karamell)', h:72 },
+  { n:'Kupfer',     c:'var(--t-kupfer)',   h:38 },
+  { n:'Haselnuss',  c:'var(--t-hasel)',    h:62 },
+  { n:'Aschblond',  c:'var(--t-asch)',     h:30 },
+  { n:'Espresso',   c:'var(--t-espresso)', h:54 }
+];
+
+var SERVICES = [
+  { n:'Balayage',    note:'Freihand gemalt, wächst ohne Ansatzkante heraus',   sw:'var(--t-honig)'    },
+  { n:'Strähnen',    note:'Folie, für gleichmäßige Aufhellung bis in die Spitzen', sw:'var(--t-karamell)' },
+  { n:'Ansatzfarbe', note:'Nachfärben in deiner Basis, alle vier bis sechs Wochen', sw:'var(--t-hasel)'  },
+  { n:'Glossing',    note:'Glanz und Farbtiefe ohne Aufhellung',                sw:'var(--t-kupfer)'   },
+  { n:'Tönung',      note:'Deckt erste graue Haare, wäscht sich sanft heraus',  sw:'var(--t-asch)'     },
+  { n:'Olaplex',     note:'Baut Bindungen im Haar wieder auf, bei jeder Blondierung dabei', sw:'var(--t-honig)' },
+  { n:'Schnitt & Föhnen', note:'Waschen, Schneiden, Föhnen inklusive Pflege',   sw:'var(--t-espresso)' },
+  { n:'Augenbrauen', note:'Formen mit Fadentechnik, auf Wunsch mit Färben',     sw:'var(--t-hasel)'    }
+];
+
+/* Echte Preisliste. Zahlen = [S, M, L]; feste Preise als Zahl; 'ab' als Objekt. */
+var PRICES = [
+  { cat:'Damen', items:[
+    { n:'Styling',                    p:[28,38,48] },
+    { n:'Waschen, Schneiden & Föhnen', s:'inklusive Pflege', p:[52,62,72] },
+    { n:'Ansatzfarbe',                p:[50,60,70] },
+    { n:'Tönung',                     p:[45,50,55] },
+    { n:'Glossing',                   p:[30,35,40] },
+    { n:'Strähnen',                   p:[90,95,105] },
+    { n:'Balayage',                   s:'Preis nach Beratung',  from:160 },
+    { n:'Olaplex',                    s:'als Zusatz zur Farbe', from:35 },
+    { n:'Olaplex Treatment',          from:75 }
+  ]},
+  { cat:'Herren', items:[
+    { n:'Waschen, Schneiden & Föhnen', s:'inklusive Styling', fix:28 },
+    { n:'Bartschnitt',                 fix:16 }
+  ]},
+  { cat:'Augenbrauen', items:[
+    { n:'Formen mit Fadentechnik', fix:10 },
+    { n:'Augenbrauen färben',      fix:12 }
+  ]},
+  { cat:'Kids', items:[
+    { n:'Mädchenschnitt', s:'bis 12 Jahre', fix:23 },
+    { n:'Jungenschnitt',  s:'bis 12 Jahre', fix:18 }
+  ]}
+];
+
+var LEN_DESC = { S:'Kurz bis Kinnlänge', M:'Kinnlänge bis Schulter', L:'Länger als Schulter' };
+
+/* Öffnungszeiten laut Treatwell- und Google-Eintrag (Stand 01.08.2026).
+   Bei Abweichung hier ändern — die Tabelle baut sich daraus. */
+var HOURS = [
+  ['Montag','09 – 19 Uhr'], ['Dienstag','09 – 19 Uhr'], ['Mittwoch','09 – 19 Uhr'],
+  ['Donnerstag','09 – 19 Uhr'], ['Freitag','09 – 19 Uhr'], ['Samstag','09 – 17 Uhr'], ['Sonntag','Geschlossen']
+];
+
+/* ---------- Ladesequenz ---------- */
+var gate  = document.getElementById('gate');
+var brush = document.getElementById('gateBrush');
+var word  = document.getElementById('gateWord');
+
+var small = window.matchMedia('(max-width: 760px)').matches;
+var STRIPS = small ? 20 : 32;
+
+/* Fester Startwert: die Streuung sieht zufällig aus, ist aber
+   bei jedem Aufruf identisch — kein Zittern zwischen Ladevorgängen. */
+function makeRnd(seed){
+  return function(){
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return (seed >>> 16) / 32768;
+  };
+}
+
+/* Verzögerung nach x-Position — der Schnitt läuft von links nach rechts */
+var stripDelay = [];
+
+(function buildCut(){
+  var host = document.getElementById('cut');
+  if (!host) return;
+  var rnd = makeRnd(1907);
+
+  for (var i = 0; i < STRIPS; i++){
+    var t = STRIPS > 1 ? i / (STRIPS - 1) : 0;
+    var del = Math.round(t * 300 + rnd() * 110);
+    var d = document.createElement('div');
+    d.className = 'cut__strip';
+    /* Ungleiche Breiten — gleichmäßige Streifen wirken wie Jalousie */
+    d.style.flexGrow = (0.72 + rnd() * 0.62).toFixed(3);
+    d.style.setProperty('--del', del + 'ms');
+    d.style.setProperty('--dur', Math.round(820 + rnd() * 340) + 'ms');
+    d.style.setProperty('--rot', ((rnd() - 0.5) * 2.6).toFixed(2) + 'deg');
+    d.style.setProperty('--dx',  ((rnd() - 0.5) * 26).toFixed(0) + 'px');
+    host.appendChild(d);
+    stripDelay.push(del);
+  }
+})();
+
+/* Der Streifen der Seite steigt, während seine Strähne fällt */
+function liftPage(){
+  var els = document.querySelectorAll('.lift');
+  Array.prototype.forEach.call(els, function(el){
+    var r = el.getBoundingClientRect();
+    var col = Math.floor(((r.left + r.width / 2) / window.innerWidth) * STRIPS);
+    col = Math.min(Math.max(col, 0), STRIPS - 1);
+    el.style.transitionDelay = (stripDelay[col] + 120) + 'ms';
+    el.classList.add('is-lifted');
+  });
+  growRing();
+}
+
+function setTravel(){
+  if (!brush || !word) return;
+  var bw = brush.offsetWidth || 1;
+  brush.style.setProperty('--travel', ((word.offsetWidth + bw * 0.7) / bw).toFixed(2));
+}
+
+var SWEEP   = small ? 460 : 540;
+var T_IN    = 150;
+var T_PAINT = small ? 480  : 560;   /* Farbzug laeuft 1400 ms */
+var T_SET   = small ? 1900 : 2000;
+var T_CUT   = small ? 2500 : 2700;  /* Klinge faehrt durch */
+var T_FALL  = T_CUT + Math.round(SWEEP * 0.72);
+
+var seen = false;
+try { seen = sessionStorage.getItem('br_gate') === '1'; } catch(e){}
+
+function openGate(){
+  if (gate.classList.contains('is-falling')) return;
+  document.documentElement.style.setProperty('--sweep', SWEEP + 'ms');
+  gate.classList.add('is-cutting');
+  document.body.classList.remove('is-locked');
+
+  window.setTimeout(function(){
+    gate.classList.add('is-falling');
+    liftPage();
+  }, Math.round(SWEEP * 0.72));
+
+  try { sessionStorage.setItem('br_gate','1'); } catch(e){}
+  window.setTimeout(function(){ gate.classList.add('is-done'); scan(); }, SWEEP + 1600);
+}
+
+function finishNow(){
+  gate.classList.add('is-done');
+  document.body.classList.remove('is-locked');
+  Array.prototype.forEach.call(document.querySelectorAll('.lift'), function(el){
+    el.classList.add('is-lifted');
+  });
+  growRing();
+  /* Ohne diesen Aufruf blieben beim zweiten Seitenaufruf innerhalb
+     derselben Sitzung alle Reveal-Bloecke unsichtbar. */
+  scan();
+}
+
+if (reduce || seen){
+  finishNow();
+} else {
+  setTravel();
+  window.addEventListener('resize', setTravel);
+  window.setTimeout(function(){ gate.classList.add('is-in'); }, T_IN);
+  window.setTimeout(function(){ setTravel(); gate.classList.add('is-painting'); }, T_PAINT);
+  window.setTimeout(function(){ gate.classList.add('is-set'); }, T_SET);
+  window.setTimeout(openGate, T_CUT);
+  document.getElementById('gateSkip').addEventListener('click', openGate);
+}
+
+/* ---------- Farbring ---------- */
+var ringEls = [];
+(function buildRing(){
+  var r = document.getElementById('ring');
+  TONES.forEach(function(t){
+    var d = document.createElement('div');
+    d.className = 'ring__sw';
+    d.style.background = t.c;
+    d.style.height = '0px';
+    d.title = t.n;
+    r.appendChild(d);
+    ringEls.push(d);
+  });
+})();
+
+/* Wächst mit der Bahn, unter der das Feld steht */
+function growRing(){
+  ringEls.forEach(function(d, i){
+    var r = d.getBoundingClientRect();
+    var col = Math.floor(((r.left + r.width / 2) / window.innerWidth) * STRIPS);
+    col = Math.min(Math.max(col, 0), STRIPS - 1);
+    var delay = (stripDelay[col] || 0) + 320 + i * 55;
+    window.setTimeout(function(){ d.style.height = TONES[i].h + 'px'; }, delay);
+  });
+}
+
+/* ---------- Laufband ---------- */
+(function buildBand(){
+  var track = document.getElementById('bandTrack');
+  var words = ['Balayage','Strähnen','Glossing','Olaplex','Ansatzfarbe','Tönung','Schnitt','Augenbrauen'];
+  var html = words.map(function(w){ return '<span class="band__item">'+w+'</span>'; }).join('');
+  track.innerHTML = html + html; /* zweimal, damit die Schleife nahtlos ist */
+})();
+
+/* ---------- Leistungen ---------- */
+(function buildSvc(){
+  var box = document.getElementById('svc');
+  SERVICES.forEach(function(s, i){
+    var row = document.createElement('div');
+    row.className = 'svc__row';
+    row.style.setProperty('--sw', s.sw);
+    row.setAttribute('data-rv','');
+    row.innerHTML =
+      '<span class="svc__idx">'+String(i+1).padStart(2,'0')+'</span>'+
+      '<span class="svc__name">'+s.n+'</span>'+
+      '<span class="svc__note">'+s.note+'</span>';
+    box.appendChild(row);
+  });
+})();
+
+/* ---------- Preise ---------- */
+var current = 0; /* 0=S 1=M 2=L */
+
+function priceText(item){
+  if (item.from) return 'ab ' + item.from + ' €';
+  if (item.fix)  return item.fix + ' €';
+  return item.p[current] + ' €';
+}
+
+(function buildTable(){
+  var box = document.getElementById('tbl');
+  PRICES.forEach(function(group){
+    var h = document.createElement('div');
+    h.className = 'tbl__cat';
+    h.textContent = group.cat;
+    box.appendChild(h);
+
+    group.items.forEach(function(item){
+      var row = document.createElement('div');
+      row.className = 'tbl__row';
+      var scales = !!item.p;
+      row.innerHTML =
+        '<span class="tbl__svc">'+item.n+(item.s ? '<small>'+item.s+'</small>' : '')+'</span>'+
+        '<span class="tbl__price'+(scales ? ' js-scale' : '')+'"><span>'+priceText(item)+'</span></span>';
+      row._item = item;
+      box.appendChild(row);
+    });
+  });
+})();
+
+function setLength(idx){
+  if (idx === current) return;
+  current = idx;
+
+  var rows = document.querySelectorAll('.tbl__row');
+  var n = 0;
+  rows.forEach(function(row){
+    var el = row.querySelector('.js-scale');
+    if (!el) return;
+    var delay = n * 34; n++;
+
+    window.setTimeout(function(){
+      el.classList.add('is-out');
+      window.setTimeout(function(){
+        el.querySelector('span').textContent = priceText(row._item);
+        el.classList.remove('is-out');
+        el.classList.add('is-pre');
+        /* zwei Frames warten, sonst schluckt der Browser die Transition */
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){ el.classList.remove('is-pre'); });
+        });
+      }, reduce ? 0 : 300);
+    }, reduce ? 0 : delay);
+  });
+}
+
+(function lenControl(){
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.len__btn'));
+  var ind  = document.getElementById('lenInd');
+  var desc = document.getElementById('lenDesc');
+
+  function place(btn){
+    ind.style.width = btn.offsetWidth + 'px';
+    ind.style.transform = 'translateX(' + (btn.offsetLeft - 4) + 'px)';
+  }
+
+  btns.forEach(function(btn, i){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.setAttribute('aria-selected','false'); });
+      btn.setAttribute('aria-selected','true');
+      place(btn);
+      desc.textContent = LEN_DESC[btn.dataset.len];
+      setLength(i);
+    });
+  });
+
+  function reset(){
+    var active = document.querySelector('.len__btn[aria-selected="true"]');
+    if (active) place(active);
+  }
+  window.addEventListener('load', reset);
+  window.addEventListener('resize', reset);
+  /* Nach dem Laden der Webfonts aendert sich die Buttonbreite */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reset);
+  reset();
+})();
+
+/* ---------- Öffnungszeiten ---------- */
+(function buildHours(){
+  var dl = document.getElementById('hrs');
+  var today = (new Date().getDay() + 6) % 7; /* Montag = 0 */
+  HOURS.forEach(function(h, i){
+    var row = document.createElement('div');
+    row.className = 'hrs__row' + (i === today ? ' is-today' : '');
+    row.innerHTML = '<dt>'+h[0]+(i === today ? ' &middot; heute' : '')+'</dt><dd>'+h[1]+'</dd>';
+    dl.appendChild(row);
+  });
+})();
+
+/* ---------- Reveals ---------- */
+var io = null;
+function scan(){
+  var targets = document.querySelectorAll('[data-rv]:not(.is-in), .gal__fig:not(.is-in)');
+  if (reduce){
+    targets.forEach(function(t){ t.classList.add('is-in'); });
+    return;
+  }
+  if (!io){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+  }
+  targets.forEach(function(t){
+    /* rv-line braucht die Reveal-Klasse, rv-Blöcke haben sie schon */
+    if (!t.classList.contains('rv') && !t.classList.contains('rv-line') && !t.classList.contains('gal__fig')){
+      t.classList.add('rv');
+    }
+    io.observe(t);
+  });
+}
+if (reduce) scan();
+
+/* ---------- Haarsequenz ----------
+   Frames erzeugen (ffmpeg, Startzeit und Dauer anpassen):
+
+     mkdir -p frames
+     ffmpeg -ss 00:00:05 -t 00:00:03 -i video.mp4 \
+       -vf "fps=16,scale=720:-2" -c:v libwebp -quality 70 \
+       -compression_level 6 frames/hair-%03d.webp
+
+   16 fps x 3 s = 48 Bilder. Danach `du -sh frames/` — bleibt
+   das unter etwa 1,5 MB, ist es fuer Mobilfunk vertretbar.
+   ------------------------------------------------------------ */
+(function reel(){
+  var COUNT = 48;
+  var src = function(i){
+    return 'frames/hair-' + String(i).padStart(3,'0') + '.webp';
+  };
+
+  var sec    = document.getElementById('reel');
+  var canvas = document.getElementById('reelCanvas');
+  var bar    = document.getElementById('reelBar');
+  if (!sec || !canvas) return;
+
+  var ctx = canvas.getContext('2d');
+  var imgs = [], ready = 0, current = -1, w = 0, h = 0;
+
+  /* Erst pruefen, ob ueberhaupt Frames liegen. Fehlen sie,
+     bleibt die Sektion unsichtbar statt kaputt. */
+  var probe = new Image();
+  probe.onload  = function(){ boot(); };
+  probe.onerror = function(){ /* still, Sektion bleibt display:none */ };
+  probe.src = src(1);
+
+  function boot(){
+    sec.classList.add('is-ready');
+    sec.removeAttribute('aria-hidden');
+
+    for (var i=1; i<=COUNT; i++){
+      var im = new Image();
+      im.decoding = 'async';
+      im.onload = function(){
+        ready++;
+        if (ready === 1) { size(); paint(0); }
+      };
+      im.src = src(i);
+      imgs.push(im);
+    }
+
+    size();
+    window.addEventListener('resize', function(){ size(); current = -1; onScroll(); });
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
+  }
+
+  function size(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth  * dpr;
+    h = canvas.clientHeight * dpr;
+    canvas.width = w; canvas.height = h;
+  }
+
+  /* Hochformat in beliebiges Fenster: fuellen statt verzerren */
+  function paint(idx){
+    var im = imgs[idx];
+    if (!im || !im.complete || !im.naturalWidth) return;
+    if (idx === current) return;
+    current = idx;
+
+    var sr = im.naturalWidth / im.naturalHeight;
+    var dr = w / h;
+    var dw, dh, dx, dy;
+    if (dr > sr){ dw = w; dh = w / sr; }
+    else       { dh = h; dw = h * sr; }
+    dx = (w - dw) / 2;
+    dy = (h - dh) / 2;
+
+    ctx.clearRect(0,0,w,h);
+    ctx.drawImage(im, dx, dy, dw, dh);
+  }
+
+  var pending = false;
+  function onScroll(){
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function(){
+      pending = false;
+      var r = sec.getBoundingClientRect();
+      var span = sec.offsetHeight - window.innerHeight;
+      if (span <= 0) return;
+
+      var p = Math.min(Math.max(-r.top / span, 0), 1);
+      var idx = Math.round(p * (COUNT - 1));
+
+      /* Nachbarbild nehmen, falls das exakte noch laedt */
+      var pick = idx;
+      for (var k=0; k<COUNT && !(imgs[pick] && imgs[pick].complete); k++){
+        pick = Math.max(0, idx - k);
+      }
+      paint(pick);
+      if (bar) bar.style.width = (p * 100).toFixed(1) + '%';
+    });
+  }
+})();
+
+/* ---------- Vollbildmenü ---------- */
+(function menu(){
+  var btn  = document.getElementById('burger');
+  var pane = document.getElementById('menu');
+  if (!btn || !pane) return;
+
+  var open = false;
+  var lastY = 0;
+
+  function set(state){
+    open = state;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+
+    if (open){
+      lastY = window.scrollY;
+      pane.hidden = false;
+      /* Zwei Frames, sonst überspringt der Browser die Transition */
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ pane.classList.add('is-open'); });
+      });
+      document.body.classList.add('is-locked');
+    } else {
+      pane.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      window.setTimeout(function(){ if (!open) pane.hidden = true; }, 720);
+    }
+  }
+
+  btn.addEventListener('click', function(){ set(!open); });
+
+  /* Ziel erst anspringen, wenn das Feld zu ist — sonst scrollt es ins Leere */
+  Array.prototype.forEach.call(pane.querySelectorAll('a[href^="#"]'), function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.querySelector(a.getAttribute('href'));
+      set(false);
+      window.setTimeout(function(){
+        if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+      }, 340);
+    });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && open) set(false);
+  });
+
+  /* Beim Drehen ins Querformat schließen — das Feld ist fürs Hochformat gebaut */
+  window.addEventListener('resize', function(){
+    if (open && window.innerWidth > 900) set(false);
+  });
+})();
+
+/* ---------- Aktionsleiste ---------- */
+(function dockState(){
+  var dock = document.getElementById('dock');
+  var hero = document.querySelector('.hero');
+  if (!dock || !hero) return;
+
+  /* Erst zeigen, wenn der Hero durch ist — oben steht der Button ja schon */
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      dock.classList.toggle('is-up', !e.isIntersecting);
+    });
+  }, { threshold:0, rootMargin:'-70% 0px 0px 0px' });
+  obs.observe(hero);
+})();
+
+/* ---------- Nav ---------- */
+(function navState(){
+  var nav = document.getElementById('nav');
+  var tick = false;
+  window.addEventListener('scroll', function(){
+    if (tick) return;
+    tick = true;
+    requestAnimationFrame(function(){
+      nav.classList.toggle('is-stuck', window.scrollY > 40);
+      tick = false;
+    });
+  }, { passive:true });
+})();
+
+})();
+</script>
+</body>
+</html>
