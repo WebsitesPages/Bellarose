@@ -588,10 +588,14 @@ a{ color:inherit; text-decoration:none; }
 .reel{ position:relative; height:100svh; }
 .reel.is-ready{ height:290vh; }
 
+/* Sticky nur, wenn es auch Scrollweg gibt. Ein klebendes Element
+   ohne Laufstrecke bringt nichts und macht auf iOS beim Ein- und
+   Ausblenden der Adressleiste unnoetige Neuberechnungen. */
 .reel__stage{
-  position:sticky; top:0; height:100svh; overflow:hidden;
+  position:relative; height:100svh; overflow:hidden;
   background:var(--paper-2); isolation:isolate;
 }
+.reel.is-ready .reel__stage{ position:sticky; top:0; }
 .reel__still{
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; display:block;
@@ -647,7 +651,10 @@ a{ color:inherit; text-decoration:none; }
   display:block; height:100%; width:0%; background:var(--accent);
 }
 @media (max-width:760px){
-  .reel{ height:230vh; }
+  /* Nur die Frame-Sequenz braucht Scrollweg. Ohne .is-ready steht
+     hier ein Standbild — dann waere jede Hoehe ueber 100svh
+     Leerlauf, in dem sich beim Scrollen nichts bewegt. */
+  .reel.is-ready{ height:230vh; }
   .reel__cap{ bottom:clamp(3rem,12vh,6rem); }
 }
 
@@ -1264,33 +1271,34 @@ body.is-locked .dock{ transform:translateY(115%); }
       <span>@bellarosehairsalon_</span><span>@bellarosehairsalon_</span>
     </a>
   </div>
-  <!-- Die Nummerierung ist der Weg von der Straße nach innen —
-       nicht Dekoration. NOCH OFFEN: echte Vorher/Nachher-Bilder
+  <!-- Reihenfolge von innen nach außen: erst der Platz, an dem man
+       sitzt, zuletzt die Tür. Die Nummerierung folgt diesem Weg —
+       sie ist kein Schmuck. NOCH OFFEN: echte Vorher/Nachher-Bilder
        von Farbergebnissen, die hier eigentlich hingehören. -->
   <div class="gal">
-    <figure class="gal__fig" data-rv>
-      <div class="gal__inner pic"><img src="bilder/salon-schaufenster.jpg" width="720" height="480"
-        loading="lazy" decoding="async"
-        alt="Schaufenster des Salons an der Kaulbachstraße mit dem Ausleger-Schild BELLAROSE HAIRSALON"></div>
-      <figcaption class="gal__cap"><span>Von der Straße</span><span>01</span></figcaption>
-    </figure>
-    <figure class="gal__fig" data-rv>
-      <div class="gal__inner pic"><img src="bilder/salon-empfang.jpg" width="720" height="480"
-        loading="lazy" decoding="async"
-        alt="Empfangstresen mit dem Schriftzug Bellarose, darauf Kérastase-Pflegeprodukte"></div>
-      <figcaption class="gal__cap"><span>Empfang</span><span>02</span></figcaption>
-    </figure>
     <figure class="gal__fig" data-rv>
       <div class="gal__inner pic"><img src="bilder/salon-innenraum.jpg" width="720" height="480"
         loading="lazy" decoding="async"
         alt="Blick in den Salon: Bedienplätze mit Bogenspiegeln, davor Sessel am Schaufenster"></div>
-      <figcaption class="gal__cap"><span>Bedienplatz</span><span>03</span></figcaption>
+      <figcaption class="gal__cap"><span>Bedienplatz</span><span>01</span></figcaption>
     </figure>
     <figure class="gal__fig" data-rv>
       <div class="gal__inner pic"><img src="bilder/salon-waschplaetze.jpg" width="720" height="480"
         loading="lazy" decoding="async"
         alt="Zwei nebeneinanderliegende Waschplätze mit weißen Keramikbecken"></div>
-      <figcaption class="gal__cap"><span>Waschplatz</span><span>04</span></figcaption>
+      <figcaption class="gal__cap"><span>Waschplatz</span><span>02</span></figcaption>
+    </figure>
+    <figure class="gal__fig" data-rv>
+      <div class="gal__inner pic"><img src="bilder/salon-empfang.jpg" width="720" height="480"
+        loading="lazy" decoding="async"
+        alt="Empfangstresen mit dem Schriftzug Bellarose, darauf Kérastase-Pflegeprodukte"></div>
+      <figcaption class="gal__cap"><span>Empfang</span><span>03</span></figcaption>
+    </figure>
+    <figure class="gal__fig" data-rv>
+      <div class="gal__inner pic"><img src="bilder/salon-schaufenster.jpg" width="720" height="480"
+        loading="lazy" decoding="async"
+        alt="Schaufenster des Salons an der Kaulbachstraße mit dem Ausleger-Schild BELLAROSE HAIRSALON"></div>
+      <figcaption class="gal__cap"><span>Von der Straße</span><span>04</span></figcaption>
     </figure>
   </div>
 </section>
