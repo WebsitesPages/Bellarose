@@ -115,7 +115,7 @@
   --muted:      #6F6559;   /* gedämpft — Meta, Labels */
   --accent:     #6F4230;   /* Mahagoni — das einzige Farbsignal */
 
-  /* Haartöne. Nur im Farbring und in den Bildfeldern. */
+  /* Haartöne. Nur in den Leistungs-Punkten und Bildfeldern. */
   --t-honig:    #D2AE68;
   --t-karamell: #AE7B45;
   --t-kupfer:   #8A4E30;
@@ -509,20 +509,47 @@ a{ color:inherit; text-decoration:none; }
   min-height:100svh; display:flex; flex-direction:column;
   justify-content:flex-end; padding-bottom:clamp(2rem,6vh,4.5rem); position:relative;
 }
-.hero__grid{
-  display:grid; grid-template-columns:1fr auto; gap:2rem clamp(1rem,4vw,4rem);
-  align-items:end;
-}
-@media (max-width:1000px){ .hero__grid{ grid-template-columns:1fr; } }
+/* Text und Strip liegen ueber der Bogen-Buehne */
+.hero__copy,.hero__strip{ position:relative; z-index:1; }
 
-.hero__title{ font-size:var(--fs-display); }
+/* Schmaler als --fs-display: die Headline teilt sich die Breite
+   jetzt mit dem Bogen und darf ihn nie beruehren. */
+.hero__copy{ max-width:min(62%, 48rem); }
+.hero__title{ font-size:clamp(3.2rem, 8.4vw, 8rem); }
 .hero__title em{
   font-style:italic; font-weight:400;
   /* Der kühle Ton sitzt genau auf dem Wort, das die Farbe meint */
   color:var(--accent);
 }
-.hero__meta{ max-width:30ch; }
+.hero__meta{ max-width:34ch; margin-top:clamp(1.2rem,2.4vh,2rem); }
 .hero__meta p{ color:var(--muted); }
+
+/* Bogen-Buehne — die Form der beleuchteten Salonspiegel.
+   Das Foto steigt aus der Unterkante des Heros auf; aussen laeuft
+   eine versetzte Haarlinie mit, deren Pfad das Skript aus der
+   tatsaechlichen Boxgroesse zeichnet (drawArch). */
+.hero__stage{
+  position:absolute; right:var(--gut); bottom:0; z-index:0;
+  height:min(74svh, calc(min(31vw, 500px) * 1.52));
+  aspect-ratio:100/152;
+}
+.hero__arch{
+  position:absolute; left:5.6%; right:5.6%; bottom:0; height:92%;
+  border-radius:999px 999px 0 0;
+}
+.hero__trace{
+  position:absolute; inset:0; width:100%; height:100%;
+  overflow:visible; pointer-events:none; display:block;
+}
+.hero__trace .rail{ fill:none; stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke; }
+/* Lichtspur wie das LED-Band der Spiegel; Ton zwischen Honig und Karamell */
+.hero__trace .glow{
+  fill:none; stroke:#C89A6B; stroke-width:2; vector-effect:non-scaling-stroke;
+  stroke-linecap:round; stroke-dasharray:14 86;
+  filter:drop-shadow(0 0 4px rgba(200,154,107,.85));
+  animation:led-run 7s linear infinite;
+}
+@keyframes led-run{ to{ stroke-dashoffset:-100; } }
 
 .hero__strip{
   display:flex; gap:0; margin-top:clamp(2rem,5vh,3.4rem);
@@ -543,17 +570,30 @@ a{ color:inherit; text-decoration:none; }
   0%{ transform:translateX(-100%) } 55%{ transform:translateX(0) } 100%{ transform:translateX(100%) }
 }
 
-/* Farbring — sechs echte Haartöne, das Werkzeug der Coloristin.
-   margin-left:auto haelt ihn auch dann an der rechten Kante, wenn
-   die Zeile umbricht — space-between allein wuerde ihn links absetzen. */
-.ring{ display:flex; gap:.42rem; align-items:flex-end; margin-left:auto; }
-.ring__sw{
-  width:clamp(26px,3.4vw,42px); border-radius:1px;
-  transform-origin:bottom center;
-  transition:height 620ms var(--e-expo), transform 420ms var(--e-expo);
-  cursor:default;
+/* Steht rechts, wo die Strip-Linie den Bogen kreuzt — der
+   Papiergrund haelt die Zeile auch ueber dem Foto lesbar. */
+.hero__addr{
+  margin-left:auto; color:var(--muted); background:var(--paper);
+  font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:0.24em;
+  padding-left:1.2rem;
 }
-.ring__sw:hover{ transform:translateY(-8px); }
+
+/* Handy und schmales Tablet: Text oben im Fluss, Bogen mittig
+   unten — Ueberschneidungen sind damit ausgeschlossen. */
+@media (max-width:1000px){
+  .hero{
+    justify-content:flex-start;
+    padding-top:calc(4.6rem + env(safe-area-inset-top) + 1.8rem);
+  }
+  .hero__copy{ max-width:none; }
+  .hero__title{ font-size:clamp(3rem, 10vw, 6rem); }
+  .hero__stage{
+    right:0; left:0; margin-inline:auto;
+    height:min(46svh, calc(min(70vw, 330px) * 1.34));
+    aspect-ratio:100/134;
+  }
+  .hero__strip{ display:none; }
+}
 
 /* ============================================================
    LAUFBAND
@@ -846,6 +886,11 @@ a{ color:inherit; text-decoration:none; }
    sichtbar, weil der Rahmen dort 4:5 statt 3:2 ist. */
 .gal__inner.pic{ position:absolute; inset:0; }
 
+/* Gleiches Spiel im Hero: .pic wuerde den Bogen sonst auf
+   position:relative zuruecksetzen und er hinge nicht mehr an der
+   Unterkante der Buehne. */
+.hero__arch.pic{ position:absolute; }
+
 /* ============================================================
    BESUCH
    ============================================================ */
@@ -915,7 +960,6 @@ a{ color:inherit; text-decoration:none; }
 
   .tbl__row:hover{ background:transparent; padding-left:0; }
   .gal__fig:hover .gal__inner{ transform:scale(1); }
-  .ring__sw:hover{ transform:none; }
 }
 
 @media (max-width:900px){
@@ -964,8 +1008,6 @@ a{ color:inherit; text-decoration:none; }
   .label{ letter-spacing:0.22em; }
 
   .hero__title{ letter-spacing:-0.025em; }
-  .hero__grid{ gap:1.8rem; }
-  .hero__strip{ padding-top:1.4rem; }
 
   .sec__head{
     flex-direction:column; align-items:flex-start; gap:.55rem;
@@ -1079,6 +1121,8 @@ body.is-locked .dock{ transform:translateY(115%); }
   .rv{ clip-path:none; } .rv > *{ transform:none; }
   .rv-line > span{ transform:none; }
   .lift{ transform:none; opacity:1; }
+  /* Die Lichtspur stuende sonst als eingefrorenes Segment auf der Linie */
+  .hero__trace .glow{ display:none; }
   .cut__strip{ transform:none; }
   .blade,.blade__glint{ display:none; }
   .gal__inner{ transform:none; }
@@ -1157,26 +1201,33 @@ body.is-locked .dock{ transform:translateY(115%); }
 
 <!-- ============================ HERO ============================ -->
 <section class="hero wrap">
-  <div class="hero__grid">
-    <div>
-      <span class="label lift">Friseursalon im Herzen von München</span>
-      <h1 class="hero__title lift" style="margin-top:1.4rem">
-        <span style="display:block">Farbe, die</span>
-        <span style="display:block"><em>mitwächst</em>.</span>
-      </h1>
+  <div class="hero__stage lift">
+    <svg class="hero__trace" id="archTrace" viewBox="0 0 100 152" aria-hidden="true">
+      <path class="rail" pathLength="100" d=""/>
+      <path class="glow" pathLength="100" d=""/>
+    </svg>
+    <div class="hero__arch pic">
+      <img src="bilder/salon-spiegelplaetze.jpg" width="1280" height="800" fetchpriority="high"
+           alt="Zwei Bedienplätze mit beleuchteten Bogenspiegeln und verchromten Sesseln">
     </div>
+  </div>
+
+  <div class="hero__copy">
+    <span class="label lift">Friseursalon im Herzen von München</span>
+    <h1 class="hero__title lift" style="margin-top:1.4rem">
+      <span style="display:block">Farbe, die</span>
+      <span style="display:block"><em>mitwächst</em>.</span>
+    </h1>
     <div class="hero__meta lift">
-      <div>
-        <p>Balayage, Strähnen und Glossing von einem kleinen Team, das seine Kundinnen beim Namen kennt.</p>
-        <p style="color:var(--ink)">Preise nach Haarlänge — vorher einsehbar, nicht erst an der Kasse.</p>
-      </div>
+      <p>Balayage, Strähnen und Glossing von einem kleinen Team, das seine Kundinnen beim Namen kennt.</p>
+      <p style="color:var(--ink)">Preise nach Haarlänge — vorher einsehbar, nicht erst an der Kasse.</p>
     </div>
   </div>
 
   <div class="hero__strip">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%; gap:2rem; flex-wrap:wrap">
       <span class="hero__scroll lift">Scrollen <i></i></span>
-      <div class="ring" id="ring" aria-hidden="true"></div>
+      <span class="hero__addr lift">Kaulbachstraße 36 · München</span>
     </div>
   </div>
 </section>
@@ -1192,8 +1243,9 @@ body.is-locked .dock{ transform:translateY(115%); }
      ==================================================================== -->
 <section class="reel" id="reel">
   <div class="reel__stage">
-    <img class="reel__still" src="bilder/salon-spiegelplaetze.jpg" width="1280" height="800"
-         alt="Zwei Bedienplätze mit beleuchteten Bogenspiegeln und verchromten Sesseln">
+    <img class="reel__still" src="bilder/salon-barberstuehle.jpg" width="720" height="480"
+         style="object-position:50% 40%"
+         alt="Zwei Barberstühle aus Chrom und Wildleder vor der beleuchteten Bellarose-Theke">
     <span class="reel__wash" aria-hidden="true"></span>
     <canvas class="reel__canvas" id="reelCanvas" aria-hidden="true"></canvas>
     <div class="reel__vig" aria-hidden="true"></div>
@@ -1374,15 +1426,6 @@ body.is-locked .dock{ transform:translateY(115%); }
 var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- Daten ---------- */
-var TONES = [
-  { n:'Honigblond', c:'var(--t-honig)',    h:46 },
-  { n:'Karamell',   c:'var(--t-karamell)', h:72 },
-  { n:'Kupfer',     c:'var(--t-kupfer)',   h:38 },
-  { n:'Haselnuss',  c:'var(--t-hasel)',    h:62 },
-  { n:'Aschblond',  c:'var(--t-asch)',     h:30 },
-  { n:'Espresso',   c:'var(--t-espresso)', h:54 }
-];
-
 var SERVICES = [
   { n:'Balayage',    note:'Freihand gemalt, wächst ohne Ansatzkante heraus',   sw:'var(--t-honig)'    },
   { n:'Strähnen',    note:'Folie, für gleichmäßige Aufhellung bis in die Spitzen', sw:'var(--t-karamell)' },
@@ -1481,7 +1524,6 @@ function liftPage(){
     el.style.transitionDelay = (stripDelay[col] + 120) + 'ms';
     el.classList.add('is-lifted');
   });
-  growRing();
 }
 
 function setTravel(){
@@ -1521,7 +1563,6 @@ function finishNow(){
   Array.prototype.forEach.call(document.querySelectorAll('.lift'), function(el){
     el.classList.add('is-lifted');
   });
-  growRing();
   /* Ohne diesen Aufruf blieben beim zweiten Seitenaufruf innerhalb
      derselben Sitzung alle Reveal-Bloecke unsichtbar. */
   scan();
@@ -1539,31 +1580,26 @@ if (reduce || seen){
   document.getElementById('gateSkip').addEventListener('click', openGate);
 }
 
-/* ---------- Farbring ---------- */
-var ringEls = [];
-(function buildRing(){
-  var r = document.getElementById('ring');
-  TONES.forEach(function(t){
-    var d = document.createElement('div');
-    d.className = 'ring__sw';
-    d.style.background = t.c;
-    d.style.height = '0px';
-    d.title = t.n;
-    r.appendChild(d);
-    ringEls.push(d);
-  });
-})();
-
-/* Wächst mit der Bahn, unter der das Feld steht */
-function growRing(){
-  ringEls.forEach(function(d, i){
-    var r = d.getBoundingClientRect();
-    var col = Math.floor(((r.left + r.width / 2) / window.innerWidth) * STRIPS);
-    col = Math.min(Math.max(col, 0), STRIPS - 1);
-    var delay = (stripDelay[col] || 0) + 320 + i * 55;
-    window.setTimeout(function(){ d.style.height = TONES[i].h + 'px'; }, delay);
+/* ---------- Bogen-Kontur im Hero ----------
+   Der Pfad wird aus der gerenderten Boxgroesse gezeichnet, damit der
+   Halbkreis bei jedem Seitenverhaeltnis rund bleibt (ein festes
+   viewBox wuerde ihn beim Umbruch auf Handy-Masse verzerren). */
+var archSvg = document.getElementById('archTrace');
+function drawArch(){
+  if (!archSvg) return;
+  var w = archSvg.clientWidth, h = archSvg.clientHeight;
+  if (!w || !h) return;
+  var r = w / 2 - 0.5;
+  var d = 'M0.5 ' + h + ' L0.5 ' + r +
+          ' A' + r + ' ' + r + ' 0 0 1 ' + (w - 0.5) + ' ' + r +
+          ' L' + (w - 0.5) + ' ' + h;
+  archSvg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  Array.prototype.forEach.call(archSvg.querySelectorAll('path'), function(p){
+    p.setAttribute('d', d);
   });
 }
+drawArch();
+window.addEventListener('resize', drawArch);
 
 /* ---------- Laufband ---------- */
 (function buildBand(){
