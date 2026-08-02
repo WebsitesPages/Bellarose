@@ -153,7 +153,18 @@
 
 *,*::before,*::after{ box-sizing:border-box; }
 
-html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+/* Papier auch hinter dem Gummizug-Overscroll von iOS */
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; background:var(--paper); }
+
+/* iPhone: deckt den Status-/Notch-Streifen dauerhaft ab, damit beim
+   Scrollen kein Seiteninhalt hinter der Uhrzeit durchlaeuft. Sitzt
+   ueber der Nav (800), unter Korn (900) und Ladesequenz (1000);
+   auf Geraeten ohne Notch ist env() = 0 und der Streifen unsichtbar. */
+body::before{
+  content:''; position:fixed; top:0; left:0; right:0; z-index:810;
+  height:env(safe-area-inset-top); background:var(--paper);
+  pointer-events:none;
+}
 
 body{
   margin:0;
@@ -892,6 +903,113 @@ a{ color:inherit; text-decoration:none; }
 .hero__arch.pic{ position:absolute; }
 
 /* ============================================================
+   STIMMEN — Spiegelwand
+   Jede Bewertung steht in einem Bogen wie die Spiegelzeile im
+   Salon. Der aktive steht vorn und traegt das LED-Band, die
+   Nachbarn stehen kleiner und gedimmt dahinter. Position und
+   Groesse haengen allein an [data-off] — das Skript setzt nur
+   diese Zahl, die Gestaltung bleibt vollstaendig im Blatt.
+   ============================================================ */
+.voice{ position:relative; }
+.voice__stage{
+  position:relative; height:clamp(360px,46vh,480px);
+  display:flex; align-items:flex-end; justify-content:center;
+  overflow:hidden;
+}
+.vc{
+  position:absolute; bottom:0; left:50%;
+  width:min(32vw,380px); height:100%; margin:0;
+  padding:clamp(2rem,3.4vw,3.2rem) clamp(1.5rem,2.2vw,2.3rem) clamp(1.8rem,2.6vw,2.6rem);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap:1.2rem;
+  background:var(--paper-2);
+  border:var(--rule); border-bottom:none;
+  border-radius:999px 999px 0 0;
+  transform-origin:bottom center;
+  transform:translateX(calc(-50% + var(--x,0%))) scale(var(--s,1));
+  transition:transform 900ms var(--e-expo), opacity 900ms var(--e-soft),
+             background 900ms var(--e-soft);
+}
+.vc[data-off="0"]{  --x:0%;    --s:1;   opacity:1;   z-index:4; background:var(--paper); }
+.vc[data-off="-1"]{ --x:-84%;  --s:.66; opacity:.46; z-index:3; }
+.vc[data-off="1"]{  --x:84%;   --s:.66; opacity:.46; z-index:3; }
+.vc[data-off="-2"]{ --x:-140%; --s:.48; opacity:.16; z-index:2; }
+.vc[data-off="2"]{  --x:140%;  --s:.48; opacity:.16; z-index:2; }
+/* Alles weiter weg wartet unsichtbar in der Mitte */
+.vc[data-off="far"]{ --x:0%; --s:.4; opacity:0; z-index:1; pointer-events:none; }
+.vc:not([data-off="0"]){ cursor:pointer; }
+
+/* Das Lichtband des Spiegels — nur am vordersten Bogen */
+.vc__led{
+  position:absolute; inset:-11px -11px 0; pointer-events:none;
+  border:1px solid #C89A6B; border-bottom:none;
+  border-radius:999px 999px 0 0; opacity:0;
+  filter:drop-shadow(0 0 6px rgba(200,154,107,.7));
+}
+.vc[data-off="0"] .vc__led{ animation:led-pulse 3.4s var(--e-soft) infinite; }
+@keyframes led-pulse{ 0%,100%{ opacity:.18 } 50%{ opacity:.8 } }
+
+.vc__q{
+  font-family:'Bodoni Moda',Didot,Georgia,serif; font-style:italic; font-weight:450;
+  font-size:clamp(1.02rem,1.32vw,1.3rem); line-height:1.42;
+  color:var(--ink-strong); margin:0;
+}
+/* Die ausfuehrlichste Rezension braucht eine Stufe weniger */
+.vc--long .vc__q{ font-size:clamp(.9rem,1.05vw,1.04rem); line-height:1.5; }
+.vc__stars{ color:var(--accent); font-size:.72rem; letter-spacing:.28em; }
+.vc__meta{
+  font-size:var(--fs-meta); letter-spacing:.24em; text-transform:uppercase;
+  color:var(--muted); line-height:1.7;
+}
+.vc__meta b{ color:var(--ink); font-weight:500; }
+
+.voice__nav{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:6;
+  width:46px; height:46px; border-radius:50%;
+  border:var(--rule); background:var(--paper); color:var(--ink-strong);
+  cursor:pointer; font-size:1rem; line-height:1;
+  transition:background 400ms var(--e-soft), color 400ms, border-color 400ms;
+}
+.voice__nav:hover{ background:var(--ink-strong); color:var(--paper); border-color:var(--ink-strong); }
+.voice__nav--prev{ left:0; }
+.voice__nav--next{ right:0; }
+
+.voice__dots{ display:flex; justify-content:center; gap:.55rem; margin-top:2rem; }
+.voice__dot{
+  width:7px; height:7px; padding:0; border-radius:50%; cursor:pointer;
+  border:0; background:var(--line);
+  transition:background 400ms var(--e-soft), transform 400ms var(--e-expo);
+}
+.voice__dot.is-on{ background:var(--accent); transform:scale(1.35); }
+
+/* Handy: aus der Wand wird ein Wischstreifen — dieselben Boegen,
+   aber mit nativem Snap statt Buehnenperspektive. */
+@media (max-width:900px){
+  .voice__stage{
+    height:auto; overflow:visible; overflow-x:auto; align-items:stretch;
+    justify-content:flex-start; gap:.8rem;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    margin-inline:calc(var(--gut) * -1); padding-inline:var(--gut);
+    scrollbar-width:none;
+  }
+  .voice__stage::-webkit-scrollbar{ display:none; }
+  .vc{
+    position:relative; left:auto; bottom:auto;
+    flex:0 0 78%; height:auto; min-height:clamp(300px,52vh,430px);
+    scroll-snap-align:center;
+    /* Perspektive aus: auf Touch fuehrt der Finger, nicht die Buehne.
+       Die Nachbarn bleiben angeschnitten stehen und nur gedaempft —
+       sonst flimmern ihre Halbsaetze am Bildrand mit. */
+    transform:none; opacity:.42;
+  }
+  .vc[data-off]{ --x:0%; --s:1; }
+  .vc[data-off="far"]{ pointer-events:auto; opacity:.42; }
+  .vc[data-off="0"]{ opacity:1; }
+  .vc:not([data-off="0"]){ cursor:default; }
+  .voice__nav{ display:none; }
+}
+
+/* ============================================================
    BESUCH
    ============================================================ */
 .visit{ display:grid; grid-template-columns:1.2fr 1fr; gap:clamp(2rem,6vw,5rem); }
@@ -1053,16 +1171,20 @@ a{ color:inherit; text-decoration:none; }
   position:fixed; left:0; right:0; bottom:0; z-index:790;
   display:none; gap:1px; background:var(--line);
   border-top:1px solid var(--line);
-  padding-bottom:env(safe-area-inset-bottom);
   transform:translateY(115%);
   transition:transform 620ms var(--e-expo);
 }
 .dock.is-up{ transform:translateY(0); }
 body.is-locked .dock{ transform:translateY(115%); }
+/* Das Safe-Area-Polster liegt in den Buttons selbst, damit ihre
+   Farben bis an die physische Unterkante reichen — auf dem Container
+   ergaebe es einen fremden Linienfarb-Streifen unterm Home-Indikator. */
 .dock a{
   flex:1; display:flex; align-items:center; justify-content:center; gap:.6rem;
-  min-height:56px; font-family:'Jost',sans-serif;
+  min-height:calc(56px + env(safe-area-inset-bottom));
+  font-family:'Jost',sans-serif;
   font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:.24em;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 .dock__call{ background:var(--paper); color:var(--ink); }
 .dock__book{ background:var(--ink-strong); color:var(--paper); }
@@ -1121,8 +1243,10 @@ body.is-locked .dock{ transform:translateY(115%); }
   .rv{ clip-path:none; } .rv > *{ transform:none; }
   .rv-line > span{ transform:none; }
   .lift{ transform:none; opacity:1; }
-  /* Die Lichtspur stuende sonst als eingefrorenes Segment auf der Linie */
+  /* Lichtspur und Spiegelband stuenden sonst als eingefrorene
+     Segmente auf halber Deckkraft in der Gegend herum */
   .hero__trace .glow{ display:none; }
+  .vc__led{ display:none; }
   .cut__strip{ transform:none; }
   .blade,.blade__glint{ display:none; }
   .gal__inner{ transform:none; }
@@ -1171,6 +1295,7 @@ body.is-locked .dock{ transform:translateY(115%); }
     <a class="swap" href="#salon"><span>Salon</span><span>Salon</span></a>
     <a class="swap" href="#leistungen"><span>Leistungen</span><span>Leistungen</span></a>
     <a class="swap" href="#preise"><span>Preise</span><span>Preise</span></a>
+    <a class="swap" href="#stimmen"><span>Stimmen</span><span>Stimmen</span></a>
     <a class="swap" href="#besuch"><span>Besuch</span><span>Besuch</span></a>
   </nav>
   <a class="btn btn--nav lift" href="https://buchung.treatwell.de/ort/100042225/menue/" target="_blank" rel="noopener"><span class="btn__dot"></span>Termin buchen</a>
@@ -1189,7 +1314,8 @@ body.is-locked .dock{ transform:translateY(115%); }
     <a href="#leistungen" data-mi><span>02</span>Leistungen</a>
     <a href="#preise"     data-mi><span>03</span>Preise</a>
     <a href="#arbeiten"   data-mi><span>04</span>Im Salon</a>
-    <a href="#besuch"     data-mi><span>05</span>Besuch</a>
+    <a href="#stimmen"    data-mi><span>05</span>Stimmen</a>
+    <a href="#besuch"     data-mi><span>06</span>Besuch</a>
   </nav>
   <div class="menu__foot" data-mi>
     <p class="menu__addr">Kaulbachstraße 36<br>80539 München</p>
@@ -1355,6 +1481,25 @@ body.is-locked .dock{ transform:translateY(115%); }
   </div>
 </section>
 
+<!-- ============================ STIMMEN ============================
+     Wortlaut der Rezensionen steht im Array REVIEWS unten im Skript.
+     Die Texte sind unveraendert uebernommen — Tippfehler und
+     Eigenheiten bleiben stehen, sonst waeren es keine Zitate mehr.
+     ================================================================= -->
+<section class="sec wrap" id="stimmen">
+  <div class="sec__head">
+    <h2 class="sec__title rv-line" data-rv><span>Was Kundinnen sagen</span></h2>
+    <span class="label">4,9 von 5 &middot; 581 Bewertungen bei Treatwell</span>
+  </div>
+
+  <div class="voice rv" data-rv>
+    <div class="voice__stage" id="voiceStage"></div>
+    <button class="voice__nav voice__nav--prev" id="voicePrev" type="button" aria-label="Vorherige Bewertung">&larr;</button>
+    <button class="voice__nav voice__nav--next" id="voiceNext" type="button" aria-label="Nächste Bewertung">&rarr;</button>
+    <div class="voice__dots" id="voiceDots" role="tablist" aria-label="Bewertungen"></div>
+  </div>
+</section>
+
 <!-- ============================ BESUCH ============================ -->
 <section class="sec wrap" id="besuch">
   <div class="sec__head">
@@ -1377,7 +1522,9 @@ body.is-locked .dock{ transform:translateY(115%); }
         </p>
         <p class="rating">
           <span class="rating__num">4,9</span>
-          <span>aus 581 Bewertungen bei Google</span>
+          <!-- Die 581 ist der Treatwell-Stand; bei Google steht eine
+               andere Zahl. Quelle nennen, sonst ist die Angabe falsch. -->
+          <span>aus 581 Bewertungen bei Treatwell</span>
         </p>
 
         <figure class="visit__fig">
@@ -1579,6 +1726,125 @@ if (reduce || seen){
   window.setTimeout(openGate, T_CUT);
   document.getElementById('gateSkip').addEventListener('click', openGate);
 }
+
+/* ---------- Stimmen ----------
+   Echte Rezensionen von treatwell.de/ort/bellarose-hairsalon,
+   abgerufen am 3. August 2026, Wortlaut unveraendert.
+   Reihenfolge: aussagekraeftigste zuerst, sie steht beim Laden vorn.
+   NOCH OFFEN: durch die Google-Rezensionen ersetzen oder ergaenzen —
+   dann auch die Quellenzeile im Abschnittskopf nachziehen. */
+var REVIEWS = [
+  { t:'Ich war bei Bellarose und habe mir von Randi die Haare schneiden lassen – ein herzlicher und geschulter Typ, der einen sehr kompetenten Eindruck macht. Ich habe lange nach einem guten Friseur in München gesucht und bin froh, endlich fündig geworden zu sein. Top Preis-Leistungs-Verhältnis – absolut empfehlenswert!', n:'Lars', s:'Herrenhaarschnitt' },
+  { t:'Wie immer perfekt! Ich bin schon seit 2 Jahren Kunde und immer sehr zufrieden :)', n:'Moritz', s:'Herrenhaarschnitt' },
+  { t:'Alles war super wie immer. Toller Schnitt für meinen Sohn und Randi war super nett wie immer.', n:'Emilie', s:'Herrenhaarschnitt' },
+  { t:'Hab’ für den Haarschnitt einige Komplimente bekommen, besser kann ein Friseur nicht sein :)', n:'Max', s:'Herrenhaarschnitt' },
+  { t:'Sehr guter Frisör, tolle Atmosphäre. Freu mich ufs nächste Mal', n:'Uwe', s:'Herrenhaarschnitt' },
+  { t:'Wie immer alles super. Randi macht seine Arbeit immer gut und akribisch', n:'Paul-Felix', s:'Herrenhaarschnitt' },
+  { t:'Mal wieder eine Glanzleistung von Randi, vielen Dank!', n:'IR', s:'Herrenhaarschnitt' },
+  { t:'es war wie immer wohltuend und ich habe ein tollen Haarschnitt', n:'Br.thomas', s:'Herrenhaarschnitt' },
+  { t:'Alles war perfekt! Kann weiterempfehlen.', n:'Marc', s:'Herrenhaarschnitt' },
+  { t:'Sehr guter und gründlicher Haarschnitt', n:'Christian', s:'Herrenhaarschnitt' }
+];
+
+(function voiceWall(){
+  var stage = document.getElementById('voiceStage');
+  var dots  = document.getElementById('voiceDots');
+  if (!stage || !dots) return;
+
+  var cards = REVIEWS.map(function(r, i){
+    var el = document.createElement('article');
+    el.className = 'vc' + (r.t.length > 180 ? ' vc--long' : '');
+    el.innerHTML =
+      '<span class="vc__led" aria-hidden="true"></span>' +
+      '<span class="vc__stars" aria-label="Fünf von fünf Sternen">★★★★★</span>' +
+      '<blockquote class="vc__q">„' + r.t + '“</blockquote>' +
+      '<footer class="vc__meta"><b>' + r.n + '</b><br>' + r.s + '</footer>';
+    el.addEventListener('click', function(){ go(i, true); });
+    stage.appendChild(el);
+    return el;
+  });
+
+  var buttons = REVIEWS.map(function(r, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'voice__dot';
+    b.setAttribute('aria-label', 'Bewertung ' + (i + 1) + ' von ' + REVIEWS.length);
+    b.addEventListener('click', function(){ go(i, true); });
+    dots.appendChild(b);
+    return b;
+  });
+
+  var active = 0, held = false;
+  /* Auf Touch fuehrt der Finger: dort liest das Skript die Position
+     aus, statt sie zu setzen. Beides ueber dieselbe Breakpoint-Frage,
+     damit Layout und Verhalten nicht auseinanderlaufen koennen. */
+  function isStrip(){ return window.matchMedia('(max-width:900px)').matches; }
+
+  function paint(){
+    var n = REVIEWS.length;
+    cards.forEach(function(el, i){
+      /* Der Abstand laeuft um: bei der ersten Bewertung stehen die
+         letzten links daneben. Ohne das bliebe die halbe Wand leer. */
+      var off = i - active;
+      if (off >  n / 2) off -= n;
+      if (off < -n / 2) off += n;
+      el.setAttribute('data-off', Math.abs(off) > 2 ? 'far' : String(off));
+      el.setAttribute('aria-hidden', off === 0 ? 'false' : 'true');
+    });
+    buttons.forEach(function(b, i){
+      b.classList.toggle('is-on', i === active);
+    });
+  }
+
+  function go(i, byUser){
+    active = (i + REVIEWS.length) % REVIEWS.length;
+    if (byUser) held = true;
+    if (isStrip()){
+      var el = cards[active];
+      stage.scrollTo({
+        left: el.offsetLeft - (stage.clientWidth - el.offsetWidth) / 2,
+        behavior: reduce ? 'auto' : 'smooth'
+      });
+    }
+    paint();
+  }
+
+  document.getElementById('voicePrev').addEventListener('click', function(){ go(active - 1, true); });
+  document.getElementById('voiceNext').addEventListener('click', function(){ go(active + 1, true); });
+
+  /* Wischen: die gerade mittig stehende Karte wird die aktive */
+  var sTick = false;
+  stage.addEventListener('scroll', function(){
+    if (!isStrip() || sTick) return;
+    sTick = true;
+    requestAnimationFrame(function(){
+      var mid = stage.scrollLeft + stage.clientWidth / 2, best = 0, dist = Infinity;
+      cards.forEach(function(el, i){
+        var d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid);
+        if (d < dist){ dist = d; best = i; }
+      });
+      if (best !== active){ active = best; held = true; paint(); }
+      sTick = false;
+    });
+  }, { passive:true });
+
+  window.addEventListener('resize', paint);
+  paint();
+
+  /* Laeuft nur, solange niemand selbst blaettert, und nur wenn die
+     Wand im Bild steht — sonst springt sie im Hintergrund weiter. */
+  if (!reduce){
+    var seenNow = false;
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ seenNow = e.isIntersecting; });
+    }, { threshold:0.4 }).observe(stage);
+
+    var timer = window.setInterval(function(){
+      if (held){ window.clearInterval(timer); return; }
+      if (seenNow) go(active + 1, false);
+    }, 6000);
+  }
+})();
 
 /* ---------- Bogen-Kontur im Hero ----------
    Der Pfad wird aus der gerenderten Boxgroesse gezeichnet, damit der
