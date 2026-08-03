@@ -337,6 +337,18 @@ a{ color:inherit; text-decoration:none; }
 .nav__inner{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
 }
+
+/* iOS-Safari setzt die fixe Leiste nach einem frischen Start manchmal
+   erst UNTER die Statuszeile (Viewport-Quirk; nach Reload korrekt) —
+   dann scrollte die Seite sichtbar durch die Luecke hinter der Uhrzeit.
+   Statt dem Quirk hinterherzumessen, haengt an der Leiste ein Papier-
+   Vorhang von ihrer Oberkante beliebig weit nach oben: wo immer der
+   Header landet, ist darueber immer Papier. Sitzt die Leiste korrekt
+   bei 0, liegt der Vorhang unsichtbar ausserhalb des Bildes. */
+.nav::before{
+  content:''; position:absolute; left:0; right:0; bottom:100%; height:100vh;
+  background:var(--paper);
+}
 .nav.is-stuck{
   background:rgba(237,228,211,.88);
   backdrop-filter:blur(14px) saturate(140%);
