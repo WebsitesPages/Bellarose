@@ -221,148 +221,97 @@ a{ color:inherit; text-decoration:none; }
 }
 
 /* ============================================================
-   LADESEQUENZ — Colour & Cut
-   Der Name wird gefärbt, dann fährt die Klinge durch und der
-   Bildschirm fällt in Strähnen zu Boden.
+   LADESEQUENZ — Durch den Bogen
+   Ein Bogen-Fenster zeichnet sich genau dort, wo der Hero-Bogen
+   steht; man sieht den Salon schon hindurch. Dann skaliert das
+   ganze Tor auf und man tritt durch den Bogen in die Seite ein.
+   Eine Ebene, nur transform und opacity — nichts kann ruckeln.
+   Die Lochgeometrie rechnet drawGate() aus der echten Lage des
+   Hero-Bogens; hier stehen nur Zustaende und Uebergaenge.
    ============================================================ */
 #gate{
   position:fixed; inset:0; z-index:1000; pointer-events:none;
-  background:var(--paper); overflow:hidden;
 }
 #gate.is-done{ display:none; }
-/* Sobald die Strähnen fallen, darf kein Grund mehr dahinterstehen */
-#gate.is-falling{ background:transparent; }
 
-/* --- Die Strähnen --- */
-.cut{ position:absolute; inset:0; display:flex; }
-.cut__strip{
-  flex:1 1 auto; background:var(--paper);
+/* Das Tor: Papier mit Bogen-Loch, als ein einziges SVG */
+.gate__svg{
+  position:absolute; inset:0; width:100%; height:100%; display:block;
   will-change:transform;
-  /* Beschleunigend — Haar fällt, es gleitet nicht */
-  transition:transform var(--dur,1000ms) cubic-bezier(0.45,0.02,0.86,0.42) var(--del,0ms);
+  /* Eintritt beschleunigt erst, dann gleitet er aus — wie ein
+     Schritt nach vorn. --gs setzt das Skript aus der Lochgroesse. */
+  transition:transform 1200ms cubic-bezier(0.55,0,0.2,1);
 }
-#gate.is-falling .cut__strip{
-  transform:translate(var(--dx,0), 116vh) rotate(var(--rot,0deg));
+#gate.is-open .gate__svg{ transform:scale(var(--gs,8)); }
+.gate__paper{ fill:var(--paper); }
+.gate__rail{
+  fill:none; stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke;
+  stroke-dasharray:100; stroke-dashoffset:100;
+  transition:stroke-dashoffset 1100ms cubic-bezier(0.4,0,0.25,1);
 }
-
-/* --- Die Klinge --- */
-.blade{
-  position:absolute; left:0; right:0; top:56%; height:1px;
-  background:linear-gradient(90deg,
-    transparent 0%, var(--line) 8%, var(--muted) 38%,
-    var(--ink-strong) 62%, var(--muted) 84%, transparent 100%);
-  transform:scaleX(0); transform-origin:left center;
-  opacity:0;
+#gate.is-in .gate__rail{ stroke-dashoffset:0; }
+.gate__glow{
+  fill:none; stroke:#C89A6B; stroke-width:2; vector-effect:non-scaling-stroke;
+  stroke-linecap:round; stroke-dasharray:12 88; stroke-dashoffset:100;
+  filter:drop-shadow(0 0 4px rgba(200,154,107,.85)); opacity:0;
 }
-.blade__glint{
-  position:absolute; top:56%; left:0;
-  width:clamp(60px,9vw,110px); height:clamp(60px,9vw,110px);
-  margin-top:calc(clamp(60px,9vw,110px) / -2);
-  border-radius:50%; opacity:0; pointer-events:none;
-  background:radial-gradient(circle,
-    rgba(255,252,246,.95) 0%, rgba(210,174,104,.42) 34%, transparent 68%);
-  filter:blur(3px);
-}
-#gate.is-cutting .blade{
-  opacity:1;
-  animation:blade var(--sweep,540ms) cubic-bezier(0.5,0.05,0.3,1) forwards;
-}
-#gate.is-cutting .blade__glint{
-  animation:glint var(--sweep,540ms) cubic-bezier(0.5,0.05,0.3,1) forwards;
-}
-@keyframes blade{
-  0%   { transform:scaleX(0) }
-  72%  { transform:scaleX(1); opacity:1 }
-  100% { transform:scaleX(1); opacity:0 }
-}
-@keyframes glint{
-  0%   { transform:translateX(-60%); opacity:0 }
-  10%  { opacity:1 }
-  78%  { opacity:1 }
-  100% { transform:translateX(100vw); opacity:0 }
+#gate.is-led .gate__glow{
+  opacity:1; stroke-dashoffset:-40;
+  transition:stroke-dashoffset 1400ms linear;
 }
 
-/* --- Wortmarke --- */
+/* --- Wortmarke: Name links, Balayage-Lichtzug einmal hindurch --- */
 .gate__mark{
-  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  text-align:center; width:min(94vw,860px);
+  position:absolute; left:var(--gut); top:44%; transform:translateY(-50%);
 }
-/* Fällt mit, einen Tick später und mit leichter Drehung */
-#gate.is-falling .gate__mark{
-  transform:translate(-50%,118vh) rotate(-1.6deg);
-  transition:transform 1150ms cubic-bezier(0.45,0.02,0.86,0.42) 90ms;
-}
-
+#gate.is-open .gate__mark{ opacity:0; transition:opacity 320ms var(--e-soft); }
 .gate__word{
-  position:relative; display:inline-block;
   font-family:'Bodoni Moda',Didot,Georgia,serif;
   font-style:italic; font-weight:500;
-  font-size:clamp(2.6rem,11vw,7rem);
-  line-height:1.08; letter-spacing:-0.01em; white-space:nowrap;
-}
-.gate__word .base{
-  color:var(--line); display:block;
-  opacity:0; transform:translateY(14px);
-  transition:opacity 700ms var(--e-soft), transform 1000ms var(--e-expo);
-}
-.gate__word .paint{
-  position:absolute; inset:0; display:block;
+  font-size:clamp(2.6rem,7.5vw,6rem);
+  line-height:1.1; letter-spacing:-0.01em; white-space:nowrap;
+  /* Ink bleibt an beiden Enden stehen — der Farbzug ist nur zu
+     Gast in den Buchstaben, wie Licht auf frischer Farbe */
   background:linear-gradient(96deg,
-    var(--t-honig) 0%, #C99A5B 26%, var(--t-karamell) 48%,
-    var(--t-kupfer) 74%, var(--t-hasel) 100%);
-  -webkit-background-clip:text; background-clip:text;
-  color:transparent;
-  clip-path:inset(0 100% 0 0);
-  transition:clip-path 1400ms cubic-bezier(0.42,0.02,0.32,1);
+    var(--ink-strong) 0%, var(--ink-strong) 38%,
+    var(--t-honig) 46%, var(--t-karamell) 50%, var(--t-kupfer) 54%,
+    var(--ink-strong) 62%, var(--ink-strong) 100%);
+  background-size:260% 100%; background-position:100% 0;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  opacity:0; transform:translateY(18px);
+  transition:opacity 600ms var(--e-soft), transform 900ms var(--e-expo);
 }
-
-/* --- Der Pinsel --- */
-.gate__brush{
-  position:absolute; top:50%; left:0;
-  width:clamp(70px,9vw,120px); height:clamp(90px,17vw,150px);
-  border-radius:50%;
-  background:radial-gradient(60% 50% at 50% 50%,
-    rgba(201,154,91,.6) 0%, rgba(174,123,69,.28) 45%, transparent 72%);
-  filter:blur(14px);
-  opacity:0; transform:translate(-60%,-50%) rotate(-9deg);
-  pointer-events:none;
-}
-#gate.is-painting .gate__brush{
-  animation:brush 1400ms cubic-bezier(0.42,0.02,0.32,1) forwards;
-}
-@keyframes brush{
-  0%   { opacity:0; transform:translate(-60%,-50%) rotate(-9deg) scaleY(.9) }
-  9%   { opacity:1 }
-  90%  { opacity:1 }
-  100% { opacity:0; transform:translate(calc(100% * var(--travel,7)),-50%) rotate(-9deg) scaleY(1.05) }
-}
-
-/* --- Linie und Unterzeile --- */
-.gate__rule{
-  height:1px; background:var(--line); margin:1.5rem auto 0;
-  width:0; transition:width 900ms var(--e-expo);
+#gate.is-in .gate__word{ opacity:1; transform:translateY(0); }
+#gate.is-shine .gate__word{
+  transition:opacity 600ms var(--e-soft), transform 900ms var(--e-expo),
+             background-position 1300ms cubic-bezier(0.4,0,0.3,1);
+  background-position:0% 0;
 }
 .gate__sub{
-  margin-top:1.15rem; opacity:0; color:var(--muted);
-  transition:opacity 700ms var(--e-soft);
+  margin-top:1.3rem; opacity:0;
+  transition:opacity 600ms var(--e-soft) 250ms;
 }
-
-/* --- Zustände --- */
-#gate.is-in .gate__word .base{ opacity:1; transform:translateY(0); }
-#gate.is-painting .gate__word .paint{ clip-path:inset(0 -2% 0 0); }
-#gate.is-set .gate__rule{ width:min(64vw,380px); }
-#gate.is-set .gate__sub{ opacity:1; }
+#gate.is-in .gate__sub{ opacity:1; }
 
 .gate__skip{
   position:absolute; right:var(--gut); bottom:2rem;
-  background:none; border:0; cursor:pointer; color:var(--muted);
+  /* Papiergrund: auf dem Desktop steht der Knopf im Foto-Fenster */
+  background:var(--paper); padding:.45rem .9rem;
+  border:0; cursor:pointer; color:var(--muted);
   font-family:'Jost',sans-serif; pointer-events:auto;
   opacity:0; visibility:hidden;
   transition:opacity 600ms var(--e-soft), visibility 0s linear 600ms, color 300ms;
 }
-#gate.is-set .gate__skip{ opacity:1; visibility:visible; transition-delay:0s; }
-#gate.is-cutting .gate__skip{ opacity:0; visibility:hidden; }
+#gate.is-in .gate__skip{ opacity:1; visibility:visible; transition-delay:400ms, 400ms; }
+#gate.is-open .gate__skip{ opacity:0; visibility:hidden; transition-delay:0s; }
 .gate__skip:hover{ color:var(--accent); }
+
+/* Handy: Loch sitzt mittig unten, der Name wandert nach oben —
+   dieselbe Aufteilung wie der Hero dahinter */
+@media (max-width:1000px){
+  .gate__mark{ top:calc(4.6rem + env(safe-area-inset-top) + 1.8rem); transform:none; }
+  .gate__word{ font-size:clamp(2.4rem,11vw,4.5rem); }
+}
 
 /* Beim Heben zieht jede Bahn den darunterliegenden Streifen der
    Seite mit. Gleiche Dauer und Kurve wie die Strähnen — die
@@ -1212,7 +1161,6 @@ body.is-locked .dock{ transform:translateY(115%); }
   .len{ width:100%; }
   .len__btn{ flex:1; padding:.9rem .4rem; }
 
-  .gate__word{ font-size:1.3rem; letter-spacing:.32em; text-indent:.32em; }
   .gate__skip{ right:1.25rem; bottom:calc(1.5rem + env(safe-area-inset-bottom)); }
   .foot__grid{ gap:1.2rem; }
 }
@@ -1227,7 +1175,6 @@ body.is-locked .dock{ transform:translateY(115%); }
 
 /* Sehr schmale Geräte: Tracking der Wortmarke weiter zurücknehmen */
 @media (max-width:360px){
-  .gate__word{ font-size:1.1rem; letter-spacing:.24em; text-indent:.24em; }
   .nav__mark{ letter-spacing:.22em; text-indent:.22em; }
 }
 
@@ -1247,8 +1194,7 @@ body.is-locked .dock{ transform:translateY(115%); }
      Segmente auf halber Deckkraft in der Gegend herum */
   .hero__trace .glow{ display:none; }
   .vc__led{ display:none; }
-  .cut__strip{ transform:none; }
-  .blade,.blade__glint{ display:none; }
+  .gate__glow{ display:none; }
   .gal__inner{ transform:none; }
   /* Ohne Bewegung: ein Standbild statt drei Bildschirmhöhen Scrollweg */
   .reel{ height:100svh !important; }
@@ -1272,16 +1218,13 @@ body.is-locked .dock{ transform:translateY(115%); }
 
 <!-- ============================ FLÜGEL ============================ -->
 <div id="gate">
-  <div class="cut" id="cut" aria-hidden="true"></div>
-  <div class="blade" aria-hidden="true"></div>
-  <div class="blade__glint" aria-hidden="true"></div>
+  <svg class="gate__svg" id="gateSvg" preserveAspectRatio="none" aria-hidden="true">
+    <path class="gate__paper" fill-rule="evenodd" d=""/>
+    <path class="gate__rail" pathLength="100" d=""/>
+    <path class="gate__glow" pathLength="100" d=""/>
+  </svg>
   <div class="gate__mark">
-    <div class="gate__word" id="gateWord">
-      <span class="base">Bellarose</span>
-      <span class="paint" aria-hidden="true">Bellarose</span>
-      <span class="gate__brush" id="gateBrush" aria-hidden="true"></span>
-    </div>
-    <div class="gate__rule" aria-hidden="true"></div>
+    <div class="gate__word">Bellarose</div>
     <div class="gate__sub label">Colour &amp; Cut &middot; München</div>
   </div>
   <button class="gate__skip label" id="gateSkip" type="button">Überspringen</button>
@@ -1327,14 +1270,17 @@ body.is-locked .dock{ transform:translateY(115%); }
 
 <!-- ============================ HERO ============================ -->
 <section class="hero wrap">
-  <div class="hero__stage lift">
+  <!-- Kein .lift: der Bogen muss von Anfang an durch das Loch der
+       Ladesequenz sichtbar sein — er IST deren Fenster. -->
+  <div class="hero__stage">
     <svg class="hero__trace" id="archTrace" viewBox="0 0 100 152" aria-hidden="true">
       <path class="rail" pathLength="100" d=""/>
       <path class="glow" pathLength="100" d=""/>
     </svg>
     <div class="hero__arch pic">
-      <img src="bilder/salon-spiegelplaetze.jpg" width="1280" height="800" fetchpriority="high"
-           alt="Zwei Bedienplätze mit beleuchteten Bogenspiegeln und verchromten Sesseln">
+      <img src="bilder/salon-barberstuehle.jpg" width="720" height="480" fetchpriority="high"
+           style="object-position:46% 50%"
+           alt="Zwei Barberstühle aus Chrom und Wildleder vor der beleuchteten Bellarose-Theke">
     </div>
   </div>
 
@@ -1369,9 +1315,8 @@ body.is-locked .dock{ transform:translateY(115%); }
      ==================================================================== -->
 <section class="reel" id="reel">
   <div class="reel__stage">
-    <img class="reel__still" src="bilder/salon-barberstuehle.jpg" width="720" height="480"
-         style="object-position:50% 40%"
-         alt="Zwei Barberstühle aus Chrom und Wildleder vor der beleuchteten Bellarose-Theke">
+    <img class="reel__still" src="bilder/salon-spiegelplaetze.jpg" width="1280" height="800"
+         alt="Zwei Bedienplätze mit beleuchteten Bogenspiegeln und verchromten Sesseln">
     <span class="reel__wash" aria-hidden="true"></span>
     <canvas class="reel__canvas" id="reelCanvas" aria-hidden="true"></canvas>
     <div class="reel__vig" aria-hidden="true"></div>
@@ -1620,88 +1565,80 @@ var HOURS = [
   ['Donnerstag','09 – 19 Uhr'], ['Freitag','09 – 19 Uhr'], ['Samstag','09 – 17 Uhr'], ['Sonntag','Geschlossen']
 ];
 
-/* ---------- Ladesequenz ---------- */
-var gate  = document.getElementById('gate');
-var brush = document.getElementById('gateBrush');
-var word  = document.getElementById('gateWord');
+/* ---------- Ladesequenz: Durch den Bogen ---------- */
+var gate = document.getElementById('gate');
 
-var small = window.matchMedia('(max-width: 760px)').matches;
-var STRIPS = small ? 20 : 32;
+/* Das Loch im Tor liegt exakt auf dem Hero-Bogen — die Geometrie
+   wird aus dessen echter Lage gemessen, nicht geraten. Die Kontur
+   sitzt auf derselben Linie wie #archTrace, damit nach dem Eintritt
+   nahtlos die Linie des Heros uebernimmt. */
+function drawGate(){
+  var svg  = document.getElementById('gateSvg');
+  var arch = document.querySelector('.hero__arch');
+  var line = document.getElementById('archTrace');
+  if (!svg || !arch) return;
 
-/* Fester Startwert: die Streuung sieht zufällig aus, ist aber
-   bei jedem Aufruf identisch — kein Zittern zwischen Ladevorgängen. */
-function makeRnd(seed){
-  return function(){
-    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-    return (seed >>> 16) / 32768;
-  };
+  var W = window.innerWidth, H = window.innerHeight;
+  var a = arch.getBoundingClientRect();
+  var r = a.width / 2;
+  var cy = a.top + r;                     /* Mittelpunkt des Halbkreises */
+
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  var hole = 'M' + a.left + ',' + H + ' L' + a.left + ',' + cy +
+             ' A' + r + ',' + r + ' 0 0 1 ' + a.right + ',' + cy +
+             ' L' + a.right + ',' + H + ' Z';
+  svg.querySelector('.gate__paper')
+     .setAttribute('d', 'M0,0 H' + W + ' V' + H + ' H0 Z ' + hole);
+
+  /* Kontur auf der Aussenlinie des Heros */
+  var t = line ? line.getBoundingClientRect() : a;
+  var tr = t.width / 2, tcy = t.top + tr;
+  var ring = 'M' + t.left + ',' + H + ' L' + t.left + ',' + tcy +
+             ' A' + tr + ',' + tr + ' 0 0 1 ' + t.right + ',' + tcy +
+             ' L' + t.right + ',' + H;
+  svg.querySelector('.gate__rail').setAttribute('d', ring);
+  svg.querySelector('.gate__glow').setAttribute('d', ring);
+
+  /* Ursprung im Lochzentrum; Skalierung so weit, dass die fernste
+     Bildschirmecke sicher durch das Loch passt */
+  var cx = a.left + r, cz = (cy + H) / 2;
+  svg.style.transformOrigin = cx + 'px ' + cz + 'px';
+  var far = Math.max(
+    Math.hypot(cx, cz), Math.hypot(W - cx, cz),
+    Math.hypot(cx, H - cz), Math.hypot(W - cx, H - cz)
+  );
+  svg.style.setProperty('--gs', Math.ceil(far / r * 1.25));
 }
 
-/* Verzögerung nach x-Position — der Schnitt läuft von links nach rechts */
-var stripDelay = [];
-
-(function buildCut(){
-  var host = document.getElementById('cut');
-  if (!host) return;
-  var rnd = makeRnd(1907);
-
-  for (var i = 0; i < STRIPS; i++){
-    var t = STRIPS > 1 ? i / (STRIPS - 1) : 0;
-    var del = Math.round(t * 300 + rnd() * 110);
-    var d = document.createElement('div');
-    d.className = 'cut__strip';
-    /* Ungleiche Breiten — gleichmäßige Streifen wirken wie Jalousie */
-    d.style.flexGrow = (0.72 + rnd() * 0.62).toFixed(3);
-    d.style.setProperty('--del', del + 'ms');
-    d.style.setProperty('--dur', Math.round(820 + rnd() * 340) + 'ms');
-    d.style.setProperty('--rot', ((rnd() - 0.5) * 2.6).toFixed(2) + 'deg');
-    d.style.setProperty('--dx',  ((rnd() - 0.5) * 26).toFixed(0) + 'px');
-    host.appendChild(d);
-    stripDelay.push(del);
-  }
-})();
-
-/* Der Streifen der Seite steigt, während seine Strähne fällt */
+/* Die Seitenteile steigen von links nach rechts gestaffelt ein,
+   waehrend das Tor sich oeffnet */
 function liftPage(){
-  var els = document.querySelectorAll('.lift');
-  Array.prototype.forEach.call(els, function(el){
-    var r = el.getBoundingClientRect();
-    var col = Math.floor(((r.left + r.width / 2) / window.innerWidth) * STRIPS);
-    col = Math.min(Math.max(col, 0), STRIPS - 1);
-    el.style.transitionDelay = (stripDelay[col] + 120) + 'ms';
+  Array.prototype.forEach.call(document.querySelectorAll('.lift'), function(el){
+    var x = el.getBoundingClientRect().left;
+    el.style.transitionDelay = Math.round(120 + (x / window.innerWidth) * 240) + 'ms';
     el.classList.add('is-lifted');
   });
 }
 
-function setTravel(){
-  if (!brush || !word) return;
-  var bw = brush.offsetWidth || 1;
-  brush.style.setProperty('--travel', ((word.offsetWidth + bw * 0.7) / bw).toFixed(2));
-}
-
-var SWEEP   = small ? 460 : 540;
-var T_IN    = 150;
-var T_PAINT = small ? 480  : 560;   /* Farbzug laeuft 1400 ms */
-var T_SET   = small ? 1900 : 2000;
-var T_CUT   = small ? 2500 : 2700;  /* Klinge faehrt durch */
-var T_FALL  = T_CUT + Math.round(SWEEP * 0.72);
+var T_IN    = 150;    /* Kontur zeichnet sich, Name steigt */
+var T_SHINE = 900;    /* Balayage-Lichtzug durch die Buchstaben */
+var T_LED   = 1250;   /* Lichtband laeuft die Kontur entlang */
+var T_OPEN  = 2450;   /* Eintritt durch den Bogen */
 
 var seen = false;
 try { seen = sessionStorage.getItem('br_gate') === '1'; } catch(e){}
 
 function openGate(){
-  if (gate.classList.contains('is-falling')) return;
-  document.documentElement.style.setProperty('--sweep', SWEEP + 'ms');
-  gate.classList.add('is-cutting');
+  if (gate.classList.contains('is-open')) return;
+  gate.classList.add('is-open');
   document.body.classList.remove('is-locked');
-
-  window.setTimeout(function(){
-    gate.classList.add('is-falling');
-    liftPage();
-  }, Math.round(SWEEP * 0.72));
-
+  window.setTimeout(liftPage, 200);
   try { sessionStorage.setItem('br_gate','1'); } catch(e){}
-  window.setTimeout(function(){ gate.classList.add('is-done'); scan(); }, SWEEP + 1600);
+  window.setTimeout(function(){
+    gate.classList.add('is-done');
+    window.removeEventListener('resize', drawGate);
+    scan();
+  }, 1300);
 }
 
 function finishNow(){
@@ -1718,12 +1655,12 @@ function finishNow(){
 if (reduce || seen){
   finishNow();
 } else {
-  setTravel();
-  window.addEventListener('resize', setTravel);
-  window.setTimeout(function(){ gate.classList.add('is-in'); }, T_IN);
-  window.setTimeout(function(){ setTravel(); gate.classList.add('is-painting'); }, T_PAINT);
-  window.setTimeout(function(){ gate.classList.add('is-set'); }, T_SET);
-  window.setTimeout(openGate, T_CUT);
+  drawGate();
+  window.addEventListener('resize', drawGate);
+  window.setTimeout(function(){ gate.classList.add('is-in'); },    T_IN);
+  window.setTimeout(function(){ gate.classList.add('is-shine'); }, T_SHINE);
+  window.setTimeout(function(){ gate.classList.add('is-led'); },   T_LED);
+  window.setTimeout(openGate, T_OPEN);
   document.getElementById('gateSkip').addEventListener('click', openGate);
 }
 
