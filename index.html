@@ -2,7 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- KEIN viewport-fit=cover. Damit haelt iOS die Seite innerhalb der
+     sicheren Flaeche und faerbt Notch- und Home-Indikator-Streifen
+     selbst mit dem Seitenhintergrund. Mit cover lief der Inhalt
+     hinter Uhrzeit und Safari-Leiste durch. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#EDE4D3">
 <title>BELLAROSE HAIRSALON — Balayage & Colour, München</title>
 <meta name="description" content="Kleiner Colour-Salon im Herzen von München. Balayage, Strähnen, Glossing und Olaplex. Preise transparent nach Haarlänge.">
@@ -155,16 +159,6 @@
 
 /* Papier auch hinter dem Gummizug-Overscroll von iOS */
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; background:var(--paper); }
-
-/* iPhone: deckt den Status-/Notch-Streifen dauerhaft ab, damit beim
-   Scrollen kein Seiteninhalt hinter der Uhrzeit durchlaeuft. Sitzt
-   ueber der Nav (800), unter Korn (900) und Ladesequenz (1000);
-   auf Geraeten ohne Notch ist env() = 0 und der Streifen unsichtbar. */
-body::before{
-  content:''; position:fixed; top:0; left:0; right:0; z-index:810;
-  height:env(safe-area-inset-top); background:var(--paper);
-  pointer-events:none;
-}
 
 body{
   margin:0;
