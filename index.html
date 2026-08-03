@@ -1127,40 +1127,32 @@ a{ color:inherit; text-decoration:none; }
   .foot__mark{ font-size:2.9rem; margin-top:2rem; letter-spacing:.04em; }
 }
 
-/* Aktionsleiste unten — buchen und anrufen ohne Scrollen */
+/* Aktionsleiste unten — buchen und anrufen ohne Scrollen.
+   Grundflaeche und alles unterhalb der Buttons ist Papier: das
+   Safe-Area-Polster sitzt im Container, und eine Papier-Bahn
+   (::after) laeuft weit nach unten weiter — sie deckt den Bereich
+   um Safaris schwebende Suchleiste ab, wo sonst die Seite
+   durchscheint. Dunkel ist NUR der Buchen-Knopf selbst. */
 .dock{
   position:fixed; left:0; right:0; bottom:0; z-index:790;
-  display:none; gap:1px; background:var(--line);
+  display:none; background:var(--paper);
   border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom);
   transform:translateY(115%);
   transition:transform 620ms var(--e-expo);
 }
 .dock.is-up{ transform:translateY(0); }
 body.is-locked .dock{ transform:translateY(115%); }
-/* Fuellt die 1px-Fuge zwischen den Button-Bahnen darunter mit */
 .dock::after{
   content:''; position:absolute; top:100%; left:0; right:0; height:60vh;
-  background:var(--line); z-index:-1;
+  background:var(--paper); z-index:-1;
 }
-/* Das Safe-Area-Polster liegt in den Buttons selbst, damit ihre
-   Farben bis an die physische Unterkante reichen — auf dem Container
-   ergaebe es einen fremden Linienfarb-Streifen unterm Home-Indikator. */
 .dock a{
   flex:1; display:flex; align-items:center; justify-content:center; gap:.6rem;
-  min-height:calc(56px + env(safe-area-inset-bottom));
-  font-family:'Jost',sans-serif;
+  min-height:56px; font-family:'Jost',sans-serif;
   font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:.24em;
-  padding-bottom:env(safe-area-inset-bottom);
-  position:relative;
 }
-/* Safaris Suchleiste schwebt UNTER der Aktionsleiste ueber der Seite —
-   links, rechts und unter ihr scheint sonst der Inhalt durch. Jeder
-   Button verlaengert deshalb seine eigene Farbe weit nach unten; die
-   Bahn haengt an der Leiste und faehrt mit ihr ein und aus. */
-.dock a::after{
-  content:''; position:absolute; top:100%; left:0; right:0; height:60vh;
-  background:inherit;
-}
+.dock a + a{ border-left:1px solid var(--line); }
 .dock__call{ background:var(--paper); color:var(--ink); }
 .dock__book{ background:var(--ink-strong); color:var(--paper); }
 .dock__call:active{ background:var(--paper-2); }
