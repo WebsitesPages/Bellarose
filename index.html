@@ -1041,18 +1041,26 @@ a{ color:inherit; text-decoration:none; }
   .btn--nav{ display:none; }
   .burger{ display:block; }
 
-  /* Auf dem Telefon immer deckend: die Leiste beginnt bei top:0 und
-     ihr Polster umfasst die Safe-Area — damit ist auch der Streifen
-     hinter Uhrzeit/Notch abgedeckt. Der Milchglas-Effekt bleibt dem
-     Desktop vorbehalten; durchscheinender Text unterm Banner war
-     genau die Beschwerde. */
+  /* Auf dem Telefon immer deckend — Milchglas bleibt dem Desktop
+     vorbehalten; durchscheinender Text unterm Banner war die
+     Beschwerde.
+
+     Der Schlagschatten ist die eigentliche Absicherung: 0 Unschaerfe,
+     100vh Streuung, 100vh nach oben versetzt. Er faerbt damit alles
+     von der Unterkante der Leiste bis 200vh darueber in Papier —
+     ohne Layout, ohne eigenes Element, und er wird mit der Leiste
+     selbst gezeichnet. Wo immer iOS den Header ansetzt: darueber
+     ist Papier. Ein Pseudo-Element kann von einem Ahnen mit
+     transform/filter abgeschnitten werden, ein Schatten nicht. */
   .nav{
-    padding-top:calc(.9rem + env(safe-area-inset-top)); padding-bottom:.9rem;
+    padding-top:.9rem; padding-bottom:.9rem;
     background:var(--paper);
+    box-shadow:0 -100vh 0 100vh var(--paper);
   }
   .nav.is-stuck{
     background:var(--paper);
     -webkit-backdrop-filter:none; backdrop-filter:none;
+    box-shadow:0 -100vh 0 100vh var(--paper);
   }
   .nav__mark{ font-size:.92rem; letter-spacing:.3em; text-indent:.3em; }
 
@@ -1528,6 +1536,10 @@ body.is-locked .dock{ transform:translateY(115%); }
     </div>
   </div>
   <div class="foot__mark" aria-hidden="true">BELLAROSE</div>
+  <!-- VOR DEM LIVEGANG ENTFERNEN. Nur zum Pruefen, ob das Telefon
+       wirklich den neuesten Stand geladen hat und nicht den Cache. -->
+  <p style="margin-top:1.5rem;font-size:.7rem;letter-spacing:.24em;
+            text-transform:uppercase;color:var(--line)">Build 5</p>
 </footer>
 
 <div class="dock" id="dock">
