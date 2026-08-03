@@ -240,14 +240,14 @@ a{ color:inherit; text-decoration:none; }
   will-change:transform;
   /* Eintritt beschleunigt erst, dann gleitet er aus — wie ein
      Schritt nach vorn. --gs setzt das Skript aus der Lochgroesse. */
-  transition:transform 1200ms cubic-bezier(0.55,0,0.2,1);
+  transition:transform 600ms cubic-bezier(0.55,0,0.2,1);
 }
 #gate.is-open .gate__svg{ transform:scale(var(--gs,8)); }
 .gate__paper{ fill:var(--paper); }
 .gate__rail{
   fill:none; stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke;
   stroke-dasharray:100; stroke-dashoffset:100;
-  transition:stroke-dashoffset 1100ms cubic-bezier(0.4,0,0.25,1);
+  transition:stroke-dashoffset 550ms cubic-bezier(0.4,0,0.25,1);
 }
 #gate.is-in .gate__rail{ stroke-dashoffset:0; }
 .gate__glow{
@@ -257,7 +257,7 @@ a{ color:inherit; text-decoration:none; }
 }
 #gate.is-led .gate__glow{
   opacity:1; stroke-dashoffset:-40;
-  transition:stroke-dashoffset 1400ms linear;
+  transition:stroke-dashoffset 700ms linear;
 }
 
 /* --- Wortmarke: Name links, Balayage-Lichtzug einmal hindurch --- */
@@ -279,17 +279,17 @@ a{ color:inherit; text-decoration:none; }
   background-size:260% 100%; background-position:100% 0;
   -webkit-background-clip:text; background-clip:text; color:transparent;
   opacity:0; transform:translateY(18px);
-  transition:opacity 600ms var(--e-soft), transform 900ms var(--e-expo);
+  transition:opacity 300ms var(--e-soft), transform 450ms var(--e-expo);
 }
 #gate.is-in .gate__word{ opacity:1; transform:translateY(0); }
 #gate.is-shine .gate__word{
-  transition:opacity 600ms var(--e-soft), transform 900ms var(--e-expo),
-             background-position 1300ms cubic-bezier(0.4,0,0.3,1);
+  transition:opacity 300ms var(--e-soft), transform 450ms var(--e-expo),
+             background-position 650ms cubic-bezier(0.4,0,0.3,1);
   background-position:0% 0;
 }
 .gate__sub{
   margin-top:1.3rem; opacity:0;
-  transition:opacity 600ms var(--e-soft) 250ms;
+  transition:opacity 300ms var(--e-soft) 125ms;
 }
 #gate.is-in .gate__sub{ opacity:1; }
 
@@ -302,7 +302,7 @@ a{ color:inherit; text-decoration:none; }
   opacity:0; visibility:hidden;
   transition:opacity 600ms var(--e-soft), visibility 0s linear 600ms, color 300ms;
 }
-#gate.is-in .gate__skip{ opacity:1; visibility:visible; transition-delay:400ms, 400ms; }
+#gate.is-in .gate__skip{ opacity:1; visibility:visible; transition-delay:200ms, 200ms; }
 #gate.is-open .gate__skip{ opacity:0; visibility:hidden; transition-delay:0s; }
 .gate__skip:hover{ color:var(--accent); }
 
@@ -1035,7 +1035,19 @@ a{ color:inherit; text-decoration:none; }
   .btn--nav{ display:none; }
   .burger{ display:block; }
 
-  .nav{ padding-top:calc(.9rem + env(safe-area-inset-top)); padding-bottom:.9rem; }
+  /* Auf dem Telefon immer deckend: die Leiste beginnt bei top:0 und
+     ihr Polster umfasst die Safe-Area — damit ist auch der Streifen
+     hinter Uhrzeit/Notch abgedeckt. Der Milchglas-Effekt bleibt dem
+     Desktop vorbehalten; durchscheinender Text unterm Banner war
+     genau die Beschwerde. */
+  .nav{
+    padding-top:calc(.9rem + env(safe-area-inset-top)); padding-bottom:.9rem;
+    background:var(--paper);
+  }
+  .nav.is-stuck{
+    background:var(--paper);
+    -webkit-backdrop-filter:none; backdrop-filter:none;
+  }
   .nav__mark{ font-size:.92rem; letter-spacing:.3em; text-indent:.3em; }
 
   .btn{ min-height:46px; padding:.8rem 1.25rem; }
@@ -1125,6 +1137,11 @@ a{ color:inherit; text-decoration:none; }
 }
 .dock.is-up{ transform:translateY(0); }
 body.is-locked .dock{ transform:translateY(115%); }
+/* Fuellt die 1px-Fuge zwischen den Button-Bahnen darunter mit */
+.dock::after{
+  content:''; position:absolute; top:100%; left:0; right:0; height:60vh;
+  background:var(--line); z-index:-1;
+}
 /* Das Safe-Area-Polster liegt in den Buttons selbst, damit ihre
    Farben bis an die physische Unterkante reichen — auf dem Container
    ergaebe es einen fremden Linienfarb-Streifen unterm Home-Indikator. */
@@ -1134,6 +1151,15 @@ body.is-locked .dock{ transform:translateY(115%); }
   font-family:'Jost',sans-serif;
   font-size:var(--fs-meta); text-transform:uppercase; letter-spacing:.24em;
   padding-bottom:env(safe-area-inset-bottom);
+  position:relative;
+}
+/* Safaris Suchleiste schwebt UNTER der Aktionsleiste ueber der Seite —
+   links, rechts und unter ihr scheint sonst der Inhalt durch. Jeder
+   Button verlaengert deshalb seine eigene Farbe weit nach unten; die
+   Bahn haengt an der Leiste und faehrt mit ihr ein und aus. */
+.dock a::after{
+  content:''; position:absolute; top:100%; left:0; right:0; height:60vh;
+  background:inherit;
 }
 .dock__call{ background:var(--paper); color:var(--ink); }
 .dock__book{ background:var(--ink-strong); color:var(--paper); }
@@ -1615,15 +1641,15 @@ function drawGate(){
 function liftPage(){
   Array.prototype.forEach.call(document.querySelectorAll('.lift'), function(el){
     var x = el.getBoundingClientRect().left;
-    el.style.transitionDelay = Math.round(120 + (x / window.innerWidth) * 240) + 'ms';
+    el.style.transitionDelay = Math.round(60 + (x / window.innerWidth) * 120) + 'ms';
     el.classList.add('is-lifted');
   });
 }
 
-var T_IN    = 150;    /* Kontur zeichnet sich, Name steigt */
-var T_SHINE = 900;    /* Balayage-Lichtzug durch die Buchstaben */
-var T_LED   = 1250;   /* Lichtband laeuft die Kontur entlang */
-var T_OPEN  = 2450;   /* Eintritt durch den Bogen */
+var T_IN    = 75;     /* Kontur zeichnet sich, Name steigt */
+var T_SHINE = 450;    /* Balayage-Lichtzug durch die Buchstaben */
+var T_LED   = 625;    /* Lichtband laeuft die Kontur entlang */
+var T_OPEN  = 1225;   /* Eintritt durch den Bogen */
 
 var seen = false;
 try { seen = sessionStorage.getItem('br_gate') === '1'; } catch(e){}
@@ -1632,13 +1658,13 @@ function openGate(){
   if (gate.classList.contains('is-open')) return;
   gate.classList.add('is-open');
   document.body.classList.remove('is-locked');
-  window.setTimeout(liftPage, 200);
+  window.setTimeout(liftPage, 100);
   try { sessionStorage.setItem('br_gate','1'); } catch(e){}
   window.setTimeout(function(){
     gate.classList.add('is-done');
     window.removeEventListener('resize', drawGate);
     scan();
-  }, 1300);
+  }, 650);
 }
 
 function finishNow(){
